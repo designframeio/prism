@@ -1,0 +1,123 @@
+{
+  "$schema": "https://prism.designframe.dev/schema/manifest.schema.json",
+  "$type": "prism-kit",
+  "name": "prism-designframe",
+  "version": "0.99.0-export.0",
+  "description": "Designframe — minimalist adaptive design system by Mike Prasad.\nBuilt as a Tailwind CSS preset/extension; pure CSS output.",
+  "license": "Apache-2.0",
+  "homepage": "https://designframe.io",
+  "prismVersion": "1.0-export",
+  "designframeVersion": "0.99",
+  "targets": [
+    "claude-design",
+    "tailwind",
+    "figma-tokens-studio",
+    "design-md",
+    "claude-design-brief"
+  ],
+  "lossiness": [
+    {
+      "id": "combo-classes",
+      "scope": "bundle",
+      "description": "DF combo-class behavior captured as prose only; v2's compositions/ layer fixes this."
+    },
+    {
+      "id": "block-hierarchy",
+      "scope": "bundle",
+      "description": "DF block hierarchy grammar (MAIN > SECTION > BLOCKS > Content) is captured as prose only."
+    },
+    {
+      "id": "adaptive-stacks",
+      "scope": "bundle",
+      "description": "DF adaptive stack behavior is approximated by Tailwind responsive utilities; stack behavior at breakpoints is not preserved 1:1."
+    },
+    {
+      "id": "semantic-html-rules",
+      "scope": "bundle",
+      "description": "DF's semantic-HTML mandates are captured as prose only, not validated by Prism's lint."
+    },
+    {
+      "id": "design-md-single-mode",
+      "scope": "emitter:design-md",
+      "description": "DESIGN.md has no mode-overlay system; emitter is light-mode + base theme only."
+    },
+    {
+      "id": "design-md-md3-name-mapping",
+      "scope": "emitter:design-md",
+      "description": "DESIGN.md ecosystem expects MD3 naming; emitter applies a crosswalk."
+    },
+    {
+      "id": "color-source-form",
+      "scope": "tokens",
+      "description": "DF stores colors as space-separated RGB triplets; DTCG output normalizes to hex."
+    }
+  ],
+  "brandCustomization": {
+    "rule": "Tokens with $brand-owned=true are intended to be replaced when consumers fork. $system-owned=true tokens are stable across all consumers.",
+    "brandOwnedPaths": [
+      "color.brand",
+      "color.brand-alt",
+      "color.theme.header",
+      "color.theme.footer",
+      "typography.family",
+      "radius.brand"
+    ],
+    "systemOwnedRoots": [
+      "screen",
+      "layout",
+      "space",
+      "size",
+      "shadow",
+      "shader",
+      "blur",
+      "border",
+      "transition",
+      "typography.scale",
+      "color.alert"
+    ],
+    "note": "Brand/system classification derived from PRISM.md frontmatter brandOwnedRoots + systemOwnedRoots."
+  },
+  "lintRulesVersion": "1.0.0",
+  "rationale": {
+    "format": "markdown",
+    "sectionOrder": [
+      "Overview",
+      "Colors",
+      "Typography",
+      "Layout",
+      "Elevation & Depth",
+      "Shapes",
+      "Components",
+      "Do's and Don'ts"
+    ],
+    "aliases": {
+      "Overview": [
+        "Brand & Style"
+      ],
+      "Layout": [
+        "Layout & Spacing"
+      ],
+      "Elevation & Depth": [
+        "Elevation"
+      ]
+    },
+    "note": "Section order canonical per Google DESIGN.md convention."
+  },
+  "source": {
+    "dfInputCss": "../../../df-ui/df-working/src/assets/designframe/df-input.css",
+    "tailwindConfig": "../../../df-ui/df-working/tailwind.config.js",
+    "dfPreset": "../../../df-ui/df-working/src/assets/designframe/df-preset.js",
+    "rationaleSources": [
+      "../../../df-ui/df-working/docs/df-rules.md",
+      "../../../df-ui/df-working/docs/df-knowledge.md",
+      "../../../df-ui/df-working/docs/taxonomy.md",
+      "../../../df-ui/df-working/src/assets/designframe/configuration.md",
+      "../../../df-ui/df-working/src/assets/designframe/theming.md"
+    ]
+  },
+  "status": {
+    "phase": "parsed",
+    "asOf": "2026-05-18",
+    "note": "Emitted by `prism parse` from PRISM.md."
+  }
+}

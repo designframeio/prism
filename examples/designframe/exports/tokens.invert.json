@@ -1,0 +1,31 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "designframe invert-mode overlay (alias of dark) — emitted from PRISM.md (prism parse).",
+  "$mode": "invert",
+  "$df-native-mode": "invert",
+  "$alias-of": "tokens.dark.json",
+  "$extends": "tokens.json",
+  "$merge-strategy": "deep-merge-overwrite",
+  "color": {
+    "theme": {
+      "default": {
+        "bg": {
+          "$ref": "{color.theme.invert.bg}"
+        },
+        "fg": {
+          "$ref": "{color.theme.invert.fg}"
+        }
+      }
+    },
+    "bg": {
+      "canvas": {
+        "$ref": "{color.theme.invert.bg}"
+      }
+    },
+    "fg": {
+      "default": {
+        "$ref": "{color.theme.invert.fg}"
+      }
+    }
+  }
+}

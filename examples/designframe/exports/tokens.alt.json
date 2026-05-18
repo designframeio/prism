@@ -1,0 +1,20 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "designframe alt-mode overlay — emitted from PRISM.md (prism parse). Alt palette — secondary brand identity (e.g. campaign mode)",
+  "$mode": "alt",
+  "$df-native-mode": "alt",
+  "$extends": "tokens.json",
+  "$merge-strategy": "deep-merge-overwrite",
+  "color": {
+    "theme": {
+      "default": {
+        "bg": {
+          "$ref": "{color.brand-alt.background}"
+        },
+        "fg": {
+          "$ref": "{color.brand-alt.primary}"
+        }
+      }
+    }
+  }
+}

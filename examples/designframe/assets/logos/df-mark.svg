@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Designframe mark">
+  <title>Designframe — primary mark</title>
+  <desc>Square brand mark: rounded-corner geometry with the brand key gradient (pink to blue) and an inset white "df" monogram.</desc>
+  <defs>
+    <linearGradient id="df-mark-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fb03b9"/>
+      <stop offset="100%" stop-color="#3883ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="8" ry="8" fill="url(#df-mark-grad)"/>
+  <text x="32" y="44" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Helvetica Neue', sans-serif" font-size="32" font-weight="800" letter-spacing="-0.04em" fill="#ffffff">df</text>
+</svg>

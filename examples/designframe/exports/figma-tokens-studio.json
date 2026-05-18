@@ -1,0 +1,1982 @@
+{
+  "global": {
+    "$description": "designframe — DTCG bundle emitted from PRISM.md (prism parse). Frontmatter primitives + body tokens merged; body wins on overlapping paths per spec §6.5.",
+    "color": {
+      "brand": {
+        "key": {
+          "$type": "color",
+          "$value": "#fb03b9",
+          "$description": "Brand key color — gradient start. Pink, saturated.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-key",
+              "applied-guidance": "Use as the brand-identity accent — button-gradient start, key-tinted backgrounds, link-hover via `.text-key`. When key is intended to be a gradient (the default), color.brand.key-end is the paired end-stop. Don't apply key as a solid-fill brand color unless the design specifically calls for it; default to the gradient pair.\n",
+              "ai-hint": "When generating brand-key UI elements, prefer gradient utilities (bg-gradient-key, button.gradient) over solid bg-key + text-key in isolation. The gradient is the brand; solid-key applications can look stylistically off without surrounding gradient context.\n"
+            }
+          }
+        },
+        "key-end": {
+          "$type": "color",
+          "$value": "#3883ff",
+          "$description": "Brand key gradient end-stop. Blue.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-key-end",
+              "applied-guidance": "Paired with color.brand.key in every gradient — set them equal for a solid-key brand. Direction is controlled by color.brand.background-direction at theme level (default: right top).\n"
+            }
+          }
+        },
+        "primary": {
+          "$type": "color",
+          "$value": "#0c0c0c",
+          "$description": "Primary text — darkest monotone.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-primary",
+              "applied-guidance": "Default body-text color in the cascade. Apply via `text-primary` for headings, body, captions, and labels — never as a hardcoded hex (`text-black`, `#000`) or raw color. Inside `.theme.invert`, `text-primary` auto-resolves to color.brand.invert via the cascade; hardcoded values stay dark and break against dark backgrounds. Per df-rules.md §10.1 the contract is \"primary = the foreground for the current theme,\" not \"primary = always black.\"\n",
+              "ai-hint": "When generating prose, headings, or labels, do NOT set color via inline styles or utilities — the default cascade resolves to primary automatically. Only use `text-primary` explicitly when overriding a previously-set foreground (e.g., re-asserting body color inside a card on a key-themed section).\n"
+            }
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "#888888",
+          "$description": "Secondary text — mid gray for help text.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-secondary",
+              "applied-guidance": "Use via `text-secondary` for de-emphasized but still-readable content — help text, captions, metadata, form hints, footer subtext. Carries less attention weight than `text-primary` without dropping below WCAG AA body contrast on white. Inside `.theme.invert` / `.theme.key`, the cascade swaps to an appropriately lighter equivalent. Don't reach for `text-gray-500` or hardcoded grays — those bypass the cascade.\n"
+            }
+          }
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "#cccccc",
+          "$description": "Tertiary text — light gray, still legible.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-tertiary",
+              "applied-guidance": "Lowest text tier still intended to be read. Use via `text-tertiary` for short metadata — timestamps, dividers between inline items, lowest-priority labels. Below WCAG AA body contrast on raw white; reserve for short labels or pair with a shader-tinted background that lifts effective contrast. Don't use for body paragraphs or anywhere users must read a sustained line of text.\n"
+            }
+          }
+        },
+        "invert": {
+          "$type": "color",
+          "$value": "#ffffff",
+          "$description": "Invert color — white. Used on dark backgrounds.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-invert",
+              "applied-guidance": "Foreground for dark themes (`.theme.invert`, `.theme.key`, `.theme.key-gradient`). Pairs with `bg-primary` in invert mode and `bg-key` in key mode. Don't apply `text-invert` directly to elements in light themes — it locks white-on-white. The cascade resolves `text-primary` to invert automatically when the parent section carries an inverting theme class; hand-applied `text-invert` defeats the cascade and won't re-flip on theme change.\n",
+              "ai-hint": "When generating UI inside a `.theme.invert` or `.theme.key` section, do NOT explicitly set `text-invert` on individual elements — the cascade does it. The only legitimate explicit use is in a fixed dark surface that should stay dark regardless of containing theme (rare; document the exception).\n"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "#cccccc",
+          "$description": "DF disabled state color. Distinct from color.brand.tertiary semantically but may share value.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-disabled"
+            }
+          }
+        },
+        "background": {
+          "$type": "color",
+          "$value": "#ffffff",
+          "$description": "Base page background.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background"
+            }
+          }
+        },
+        "background-start": {
+          "$type": "color",
+          "$value": "#ffe6f8",
+          "$description": "DF gradient background start (optional). Set same as color.brand.background if no gradient bg.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-start"
+            }
+          }
+        },
+        "background-end": {
+          "$type": "color",
+          "$value": "#ebf3ff",
+          "$description": "DF gradient background end (optional).",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-end"
+            }
+          }
+        },
+        "background-direction": {
+          "$type": "string",
+          "$value": "right top",
+          "$description": "CSS gradient direction for background-start → background-end pair.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-direction"
+            }
+          }
+        }
+      },
+      "brand-alt": {
+        "key": {
+          "$type": "color",
+          "$value": "#fa0002",
+          "$description": "Alt brand key color.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-key-alt"
+            }
+          }
+        },
+        "key-end": {
+          "$type": "color",
+          "$value": "#faa002",
+          "$description": "Alt brand key gradient end.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-key-end-alt"
+            }
+          }
+        },
+        "primary": {
+          "$type": "color",
+          "$value": "#0c0c0c",
+          "$description": "Alt theme primary.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-primary-alt"
+            }
+          }
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "#888888",
+          "$description": "Alt theme secondary.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-secondary-alt"
+            }
+          }
+        },
+        "tertiary": {
+          "$type": "color",
+          "$value": "#cccccc",
+          "$description": "Alt theme tertiary.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-tertiary-alt"
+            }
+          }
+        },
+        "invert": {
+          "$type": "color",
+          "$value": "#ffffff",
+          "$description": "Alt theme invert.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-invert-alt"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": "#cccccc",
+          "$description": "Alt theme disabled.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-disabled-alt"
+            }
+          }
+        },
+        "background": {
+          "$type": "color",
+          "$value": "#ffffff",
+          "$description": "Alt theme background.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-alt"
+            }
+          }
+        },
+        "background-start": {
+          "$type": "color",
+          "$value": "#ff9f1c",
+          "$description": "Alt gradient bg start.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-start-alt"
+            }
+          }
+        },
+        "background-end": {
+          "$type": "color",
+          "$value": "#ffd166",
+          "$description": "Alt gradient bg end.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-end-alt"
+            }
+          }
+        }
+      },
+      "alert": {
+        "notify": {
+          "bg": {
+            "$type": "color",
+            "$value": "#3883ff",
+            "$description": "Notify alert background. Pairs with alert.notify.fg.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-notify-background"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Notify alert foreground. Paired with alert.notify.bg."
+          }
+        },
+        "warning": {
+          "bg": {
+            "$type": "color",
+            "$value": "#faa002",
+            "$description": "Warning alert background. Pairs with alert.warning.fg. Note: alert.warning hex placeholder; verify against df-preset.js at full extraction.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-warning-background"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$value": "#0c0c0c",
+            "$description": "Warning alert foreground. Paired with alert.warning.bg."
+          }
+        },
+        "error": {
+          "bg": {
+            "$type": "color",
+            "$value": "#fa0002",
+            "$description": "Error alert background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-error-background",
+                "applied-guidance": "Apply to alert containers signaling error state — form validation, destructive-action confirmations, system failures. Paired with color.alert.error.fg (white) for WCAG AA contrast on body text.\n"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Error alert foreground."
+          }
+        },
+        "success": {
+          "bg": {
+            "$type": "color",
+            "$value": "#22c55e",
+            "$description": "Success alert background. Pairs with alert.success.fg. Placeholder hex pending df-preset.js extraction.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-success-background"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$value": "#ffffff",
+            "$description": "Success alert foreground."
+          }
+        }
+      },
+      "_aliases": {
+        "primary": {
+          "$ref": "{color.brand.key}"
+        },
+        "primary-end": {
+          "$ref": "{color.brand.key-end}"
+        },
+        "fg-default": {
+          "$ref": "{color.brand.primary}"
+        },
+        "fg-muted": {
+          "$ref": "{color.brand.secondary}"
+        },
+        "fg-subtle": {
+          "$ref": "{color.brand.tertiary}"
+        },
+        "fg-on-dark": {
+          "$ref": "{color.brand.invert}"
+        },
+        "bg-canvas": {
+          "$ref": "{color.brand.background}"
+        }
+      },
+      "fg": {
+        "default": {
+          "$ref": "{color.theme.default.fg}"
+        },
+        "muted": {
+          "$ref": "{color.brand.secondary}"
+        },
+        "subtle": {
+          "$ref": "{color.brand.tertiary}"
+        },
+        "on-key": {
+          "$ref": "{color.theme.key.fg}"
+        },
+        "on-dark": {
+          "$ref": "{color.theme.invert.fg}"
+        },
+        "disabled": {
+          "$ref": "{color.brand.disabled}"
+        }
+      },
+      "bg": {
+        "canvas": {
+          "$ref": "{color.theme.default.bg}"
+        },
+        "key": {
+          "$ref": "{color.theme.key.bg}"
+        },
+        "key-start": {
+          "$ref": "{color.theme.key-gradient.bg-start}"
+        },
+        "key-end": {
+          "$ref": "{color.theme.key-gradient.bg-end}"
+        },
+        "invert": {
+          "$ref": "{color.theme.invert.bg}"
+        }
+      },
+      "theme": {
+        "default": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.background}",
+            "$description": "Default theme background. Light mode = white.",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Default page-level background. Pairs with color.theme.default.fg per the fg/bg pairing rule. Don't override per-section; theme context is a section-level decision via `.theme` class on a `<section>`.\n"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.primary}",
+            "$description": "Default theme foreground (primary text on canvas).",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Default body-text color, paired with color.theme.default.bg. Inherited by `<p>`, `<h1>`–`<h6>`, `<a>` defaults — don't set color manually on these elements unless overriding for a deliberate exception.\n",
+                "ai-hint": "When generating prose paragraphs or headings, do NOT set color via inline styles or utilities. The default cascade handles it; setting `text-primary` is redundant and `text-black` is wrong (it bypasses the cascade per df-rules.md §10.1).\n"
+              }
+            }
+          }
+        },
+        "invert": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.primary}",
+            "$description": "Inverted theme background (dark mode).",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Dark-mode section bg = primary (near-black). Apply via `.theme.invert` on a section element, not by setting bg-primary directly — the class triggers full atomic invert (card auto-revert, button gradient-key-invert behavior, shader recalibration). Manual color flipping misses these per df-rules.md §10.5.\n"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.invert}",
+            "$description": "Inverted theme foreground (dark mode).",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Foreground role for inverted (dark) theme sections. Resolves to color.brand.invert via cascade when `.theme.invert` is applied to a section. Don't reference this semantic token directly in markup — write `text-primary` and let the cascade resolve to invert automatically inside `.theme.invert`. Lint rule 3 (contrast-ratio) verifies WCAG AA pairing with color.theme.invert.bg.\n"
+              }
+            }
+          }
+        },
+        "key": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.key}",
+            "$description": "Key theme background — saturated brand color as section bg.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "large",
+                "applied-guidance": "Use for hero bands, CTA strips, brand-emphasized sections. Per df-rules.md §10.4, components inside `.theme.key` auto-invert (key↔invert swap on buttons/chips/form rings) so they remain visible on the saturated bg. Don't manually flip component colors in key sections — the cascade handles it. $contrastTarget=large signals the WCAG-AA threshold is 3:1 (display/hero), not 4.5:1 (body); body text inside a key section auto-inverts to higher-contrast invert per the cascade.\n"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.invert}",
+            "$description": "Key theme foreground — invert (white) on saturated bg.",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Foreground role for key-themed sections — resolves to invert (white) over the saturated key brand bg. Active inside `.theme.key` and `.theme.key-gradient` sections. The semantic-tier `$contrastTarget: large` on color.theme.key.bg signals the WCAG-AA threshold for *bg* is 3:1 (display-scale text); for body-text contrast use `text-primary` in a card or alt-styled child element so the cascade lifts contrast to 4.5:1. Per df-rules.md §10.4, components inside `.theme.key` auto-swap key↔invert; manual color flipping defeats the cascade.\n"
+              }
+            }
+          }
+        },
+        "default-transparent": {
+          "bg": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Default theme with transparent bg — defers to parent surface. DF-native — .theme.transparent.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "decorative"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.theme.default.fg}",
+            "$description": "Default theme transparent foreground (fg unchanged, bg surrendered to parent)."
+          }
+        },
+        "alt": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.background}",
+            "$description": "Alt theme background — light mode + alt brand palette. DF-native — .theme.alt.",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Background role for sections themed with the alternate brand palette (`.theme.alt`). Use the class on a `<section>`, not the semantic token directly — applying `.theme.alt` reassigns the entire `--color-*` cascade to alt counterparts (color.brand-alt.*) for everything inside. Per df-rules.md §10.2, direct `bg-background-alt` usage locks the element to alt regardless of surrounding theme; generic `bg-background` inside `.theme.alt` resolves here automatically.\n"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.primary}",
+            "$description": "Alt theme foreground.",
+            "$extensions": {
+              "prism": {
+                "applied-guidance": "Foreground role paired with color.theme.alt.bg inside `.theme.alt` sections. Same cascade rule as the bg: use generic `text-primary` and let the cascade resolve to alt automatically — direct `text-primary-alt` usage locks the element to alt regardless of surrounding theme (df-rules.md §10.2 anti-pattern). Lint rule 3 (contrast-ratio) enforces WCAG AA against color.theme.alt.bg.\n"
+              }
+            }
+          }
+        },
+        "alt-transparent": {
+          "bg": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Alt theme with transparent bg.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "decorative"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.theme.alt.fg}",
+            "$description": "Alt theme transparent foreground."
+          }
+        },
+        "invert-transparent": {
+          "bg": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Invert theme with transparent bg.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "decorative"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.theme.invert.fg}",
+            "$description": "Invert theme transparent foreground."
+          }
+        },
+        "alt-invert": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.primary}",
+            "$description": "Alt + inverted theme — dark mode using alt palette. DF-native — .theme.alt-invert. Composes alt cascade on top of invert cascade."
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.invert}",
+            "$description": "Alt-invert foreground."
+          }
+        },
+        "alt-invert-transparent": {
+          "bg": {
+            "$type": "color",
+            "$value": "transparent",
+            "$description": "Alt-invert theme with transparent bg.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "decorative"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.theme.alt-invert.fg}",
+            "$description": "Alt-invert transparent foreground."
+          }
+        },
+        "key-gradient": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.key}",
+            "$description": "Key-gradient solid fallback for non-gradient consumers.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "large"
+              }
+            }
+          },
+          "bg-start": {
+            "$type": "color",
+            "$ref": "{color.brand.key}",
+            "$description": "Key-gradient start stop."
+          },
+          "bg-end": {
+            "$type": "color",
+            "$ref": "{color.brand.key-end}",
+            "$description": "Key-gradient end stop."
+          },
+          "bg-direction": {
+            "$type": "string",
+            "$ref": "{color.brand.background-direction}",
+            "$description": "Key-gradient direction (CSS keyword form)."
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.invert}",
+            "$description": "Key-gradient foreground (invert on saturated bg)."
+          }
+        },
+        "key-alt": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.key}",
+            "$description": "Alt key theme — solid alt-key brand color as section bg.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "large"
+              }
+            }
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.invert}",
+            "$description": "Alt key foreground."
+          }
+        },
+        "key-alt-gradient": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.key}",
+            "$description": "Alt key-gradient solid fallback.",
+            "$extensions": {
+              "prism": {
+                "contrastTarget": "large"
+              }
+            }
+          },
+          "bg-start": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.key}",
+            "$description": "Alt key-gradient start stop."
+          },
+          "bg-end": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.key-end}",
+            "$description": "Alt key-gradient end stop."
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand-alt.invert}",
+            "$description": "Alt key-gradient foreground."
+          }
+        },
+        "header": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.background}",
+            "$description": "Header landmark background. Source — --qs-color-header-background."
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.primary}",
+            "$description": "Header landmark foreground. Source — --qs-color-header-primary."
+          },
+          "nav-link": {
+            "$type": "color",
+            "$ref": "{color.brand.secondary}",
+            "$description": "Header nav link color. Source — --qs-color-header-nav-link."
+          }
+        },
+        "footer": {
+          "bg": {
+            "$type": "color",
+            "$ref": "{color.brand.background}",
+            "$description": "Footer landmark background. Source — --qs-color-footer-background."
+          },
+          "fg": {
+            "$type": "color",
+            "$ref": "{color.brand.primary}",
+            "$description": "Footer landmark foreground."
+          },
+          "nav-link": {
+            "$type": "color",
+            "$ref": "{color.brand.secondary}",
+            "$description": "Footer nav link color."
+          }
+        }
+      }
+    },
+    "shader": {
+      "light": {
+        "$type": "number",
+        "$value": 0.15,
+        "$description": "Lightest shader alpha.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shader-light"
+          }
+        }
+      },
+      "base": {
+        "$type": "number",
+        "$value": 0.6,
+        "$description": "Bare 'shader' = this value (naming asymmetry — see Do's and Don'ts).",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shader-base"
+          }
+        }
+      },
+      "heavy": {
+        "$type": "number",
+        "$value": 0.85,
+        "$description": "Heavy shader alpha.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shader-heavy"
+          }
+        }
+      }
+    },
+    "typography": {
+      "family": {
+        "heading": {
+          "$type": "fontFamily",
+          "$value": [
+            "headingFontFamily",
+            "sans-serif",
+            "system-ui"
+          ],
+          "$description": "Heading font stack. Source: --font-heading + --font-heading-alt1/alt2. Replace headingFontFamily token at @font-face when forking.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--font-heading"
+            }
+          }
+        },
+        "body": {
+          "$type": "fontFamily",
+          "$value": [
+            "bodyFontFamily",
+            "sans-serif",
+            "system-ui"
+          ],
+          "$description": "Body font stack. Source: --font-body + alt1/alt2.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--font-body"
+            }
+          }
+        },
+        "display": {
+          "$type": "fontFamily",
+          "$value": [
+            "displayFontFamily",
+            "sans-serif",
+            "system-ui"
+          ],
+          "$description": "Display font stack. Same as heading by DF convention; carve out if brand wants distinct display face.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--font-display"
+            }
+          }
+        }
+      },
+      "scale": {
+        "base": {
+          "size": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$description": "Base type size. Equivalent to 1rem and to text-p3.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-base-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$description": "Base line height. Anchor for all DF type rhythm. See df-rules.md §lineHeight-anchor.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-base-lh"
+              }
+            }
+          }
+        },
+        "d1": {
+          "size": {
+            "$type": "dimension",
+            "$value": "96px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d1-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "number",
+            "$value": 1,
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d1-lh"
+              }
+            }
+          }
+        },
+        "d2": {
+          "size": {
+            "$type": "dimension",
+            "$value": "72px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d2-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "number",
+            "$value": 1,
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d2-lh"
+              }
+            }
+          }
+        },
+        "d3": {
+          "size": {
+            "$type": "dimension",
+            "$value": "60px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d3-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "number",
+            "$value": 1,
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-d3-lh"
+              }
+            }
+          }
+        },
+        "h1": {
+          "size": {
+            "$type": "dimension",
+            "$value": "48px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h1-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "number",
+            "$value": 1,
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h1-lh"
+              }
+            }
+          }
+        },
+        "h2": {
+          "size": {
+            "$type": "dimension",
+            "$value": "32px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h2-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "40px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h2-lh"
+              }
+            }
+          }
+        },
+        "h3": {
+          "size": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h3-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "32px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h3-lh"
+              }
+            }
+          }
+        },
+        "h4": {
+          "size": {
+            "$type": "dimension",
+            "$value": "20px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h4-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "28px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h4-lh"
+              }
+            }
+          }
+        },
+        "h5": {
+          "size": {
+            "$type": "dimension",
+            "$value": "18px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h5-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "28px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h5-lh"
+              }
+            }
+          }
+        },
+        "h6": {
+          "size": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h6-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-h6-lh"
+              }
+            }
+          }
+        },
+        "p1": {
+          "size": {
+            "$type": "dimension",
+            "$value": "20px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p1-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "28px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p1-lh"
+              }
+            }
+          }
+        },
+        "p2": {
+          "size": {
+            "$type": "dimension",
+            "$value": "18px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p2-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "28px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p2-lh"
+              }
+            }
+          }
+        },
+        "p3": {
+          "size": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$description": "Body text P3 size — equivalent to base. The anchor for the type scale.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p3-size",
+                "applied-guidance": "Default body-text size. All other scale steps are ratios of this value. If you change it, recompute every paired line-height — DF's 24px line-height rhythm breaks at off-scale sizes. The p1-p5 ladder is a 1.25× ratio at the heavy end (p1=20px → p3=16px) and 0.875×/0.75× at the light end (p3=16px → p4=14px → p5=12px).\n"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p3-lh"
+              }
+            }
+          }
+        },
+        "p4": {
+          "size": {
+            "$type": "dimension",
+            "$value": "14px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p4-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "20px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p4-lh"
+              }
+            }
+          }
+        },
+        "p5": {
+          "size": {
+            "$type": "dimension",
+            "$value": "12px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p5-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "16px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-p5-lh"
+              }
+            }
+          }
+        },
+        "nav": {
+          "size": {
+            "$type": "dimension",
+            "$value": "20px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-nav-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "40px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-nav-lh"
+              }
+            }
+          }
+        },
+        "button": {
+          "size": {
+            "$type": "dimension",
+            "$value": "18px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-button-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "40px",
+            "$description": "Inherits text-nav-lh.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-button-lh"
+              }
+            }
+          }
+        },
+        "chip": {
+          "size": {
+            "$type": "dimension",
+            "$value": "12px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-chip-size"
+              }
+            }
+          },
+          "lh": {
+            "$type": "dimension",
+            "$value": "24px",
+            "$extensions": {
+              "prism": {
+                "df-source": "--text-chip-lh"
+              }
+            }
+          }
+        }
+      }
+    },
+    "space": {
+      "unit": {
+        "$type": "dimension",
+        "$value": "4px",
+        "$description": "Base layout unit. All spacing multiples derive from this.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--layout-unit"
+          }
+        }
+      },
+      "gutter": {
+        "base": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$description": "Standard gutter spacing — mobile-first.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-base",
+              "applied-guidance": "Use for section-level rhythm (between blocks in section-grid, between sections via m-section). Don't override per-component; gutter is a system-level decision and per-component overrides break the adaptive grid math.\n"
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$description": "≥640px.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-sm"
+            }
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$description": "≥768px.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-md"
+            }
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$description": "≥960px.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-lg"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "32px",
+          "$description": "≥1440px.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-xl"
+            }
+          }
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "32px",
+          "$description": "≥1600px.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-gutter-2xl"
+            }
+          }
+        }
+      },
+      "shoulder": {
+        "base": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-base"
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "32px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-sm"
+            }
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "36px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-md"
+            }
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "36px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-lg"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "40px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-xl"
+            }
+          }
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "48px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-shoulder-2xl"
+            }
+          }
+        }
+      },
+      "article": {
+        "base": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-article-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-article-xl"
+            }
+          }
+        }
+      },
+      "element": {
+        "base": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-element-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-element-xl"
+            }
+          }
+        }
+      },
+      "section": {
+        "base": {
+          "$type": "dimension",
+          "$value": "48px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-section-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "64px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-section-xl"
+            }
+          }
+        }
+      },
+      "header": {
+        "base": {
+          "$type": "dimension",
+          "$value": "12px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-header-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--pad-header-xl"
+            }
+          }
+        }
+      },
+      "stack": {
+        "base": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-stack-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-stack-xl"
+            }
+          }
+        }
+      },
+      "form": {
+        "base": {
+          "$type": "dimension",
+          "$value": "12px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-form-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-form-xl"
+            }
+          }
+        }
+      },
+      "sub": {
+        "base": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-sub-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "12px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--spacing-sub-xl"
+            }
+          }
+        }
+      },
+      "hgroup": {
+        "display": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$description": "HGROUP gap when display-level.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-hgroup-display"
+            }
+          }
+        },
+        "heading": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-hgroup-heading"
+            }
+          }
+        },
+        "title": {
+          "$type": "dimension",
+          "$value": "4px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--gap-hgroup-title"
+            }
+          }
+        }
+      },
+      "_aliases": {
+        "md": {
+          "$ref": "{space.gutter.base}"
+        },
+        "sm": {
+          "$ref": "{space.article.base}"
+        },
+        "xs": {
+          "$ref": "{space.sub.base}"
+        },
+        "2xs": {
+          "$ref": "{space.unit}"
+        }
+      }
+    },
+    "size": {
+      "element": {
+        "hairline": {
+          "$type": "dimension",
+          "$value": "1px",
+          "$description": "Hairline border/divider thickness.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--element-hairline-size"
+            }
+          }
+        },
+        "min": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$description": "Smallest element height. Matches text-base-lh.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--element-min-size"
+            }
+          }
+        },
+        "sub": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$description": "Sub-element height.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--element-sub-size"
+            }
+          }
+        },
+        "compact": {
+          "$type": "dimension",
+          "$value": "32px",
+          "$description": "Compact interactive height.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--element-compact-size"
+            }
+          }
+        },
+        "base": {
+          "$type": "dimension",
+          "$value": "40px",
+          "$description": "Standard interactive height (button, input).",
+          "$extensions": {
+            "prism": {
+              "df-source": "--element-base-size"
+            }
+          }
+        }
+      }
+    },
+    "radius": {
+      "brand": {
+        "min": {
+          "$type": "dimension",
+          "$value": "4px",
+          "$description": "Smallest brand rounding.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-rounded-min"
+            }
+          }
+        },
+        "base": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$description": "Base element rounding.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-rounded-base"
+            }
+          }
+        },
+        "corner": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$description": "Standard container rounding.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-rounded-corner"
+            }
+          }
+        },
+        "field": {
+          "$type": "dimension",
+          "$value": "20px",
+          "$description": "Form input rounding.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-rounded-field"
+            }
+          }
+        }
+      },
+      "full": {
+        "$type": "dimension",
+        "$value": "9999px",
+        "$description": "Pill/circle radius.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--rounded-full"
+          }
+        }
+      },
+      "chip": {
+        "$ref": "{radius.brand.min}"
+      },
+      "article": {
+        "base": {
+          "$type": "dimension",
+          "$value": "16px",
+          "$description": "Article (card) rounding. Matches pad-article per breakpoint.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--rounded-article-base"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "24px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--rounded-article-xl"
+            }
+          }
+        }
+      }
+    },
+    "shadow": {
+      "alpha": {
+        "light": {
+          "$type": "number",
+          "$value": 0.125,
+          "$description": "Light shadow alpha.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--shadow-alpha-light"
+            }
+          }
+        },
+        "base": {
+          "$type": "number",
+          "$value": 0.25,
+          "$description": "Base shadow alpha.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--shadow-alpha-base"
+            }
+          }
+        },
+        "heavy": {
+          "$type": "number",
+          "$value": 0.25,
+          "$description": "Same numeric value as base; offset/blur do the differentiation.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--shadow-alpha-heavy"
+            }
+          }
+        }
+      },
+      "light": {
+        "$type": "shadow",
+        "$value": {
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "4px",
+          "spread": "0px",
+          "color": "rgba(0,0,0,0.125)"
+        },
+        "$description": "Lightest elevation tier — surface separation without committing to depth. Alpha matches shadow.alpha.light.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shadow-light"
+          }
+        }
+      },
+      "base": {
+        "$type": "shadow",
+        "$value": {
+          "offsetX": "0px",
+          "offsetY": "2px",
+          "blur": "4px",
+          "spread": "0px",
+          "color": "rgba(0,0,0,0.25)"
+        },
+        "$description": "Standard elevation — default card / popover shadow. Alpha matches shadow.alpha.base.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shadow-base"
+          }
+        }
+      },
+      "heavy": {
+        "$type": "shadow",
+        "$value": {
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "8px",
+          "spread": "2px",
+          "color": "rgba(0,0,0,0.25)"
+        },
+        "$description": "Heaviest elevation — modal / drawer / overlay shadow. Offset + blur do the differentiation from base; alpha is identical to base.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--shadow-heavy"
+          }
+        }
+      }
+    },
+    "blur": {
+      "light": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--blur-light"
+          }
+        }
+      },
+      "base": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--blur-base"
+          }
+        }
+      },
+      "heavy": {
+        "$type": "dimension",
+        "$value": "64px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--blur-heavy"
+          }
+        }
+      },
+      "max": {
+        "$type": "dimension",
+        "$value": "128px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--blur-max"
+          }
+        }
+      }
+    },
+    "border": {
+      "base": {
+        "$type": "dimension",
+        "$value": "1px",
+        "$description": "Utility-only; not auto-applied.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--border-base"
+          }
+        }
+      },
+      "button": {
+        "$type": "dimension",
+        "$value": "1px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--border-button"
+          }
+        }
+      },
+      "form": {
+        "$type": "dimension",
+        "$value": "1px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--border-form"
+          }
+        }
+      }
+    },
+    "transition": {
+      "duration": {
+        "$type": "duration",
+        "$value": "300ms",
+        "$description": "Base transition duration.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--transition-duration-base"
+          }
+        }
+      },
+      "timing": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.4,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "Base transition easing.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--transition-timing-base"
+          }
+        }
+      },
+      "property": {
+        "$type": "string",
+        "$value": "all",
+        "$description": "Base transition property.",
+        "$extensions": {
+          "prism": {
+            "df-source": "--transition-property-base"
+          }
+        }
+      }
+    },
+    "layout": {
+      "cols": {
+        "base": {
+          "$type": "number",
+          "$value": 6,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-base"
+            }
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": 6,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-sm"
+            }
+          }
+        },
+        "md": {
+          "$type": "number",
+          "$value": 6,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-md"
+            }
+          }
+        },
+        "lg": {
+          "$type": "number",
+          "$value": 12,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-lg"
+            }
+          }
+        },
+        "xl": {
+          "$type": "number",
+          "$value": 12,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-xl"
+            }
+          }
+        },
+        "2xl": {
+          "$type": "number",
+          "$value": 12,
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-cols-2xl"
+            }
+          }
+        }
+      },
+      "col-width": {
+        "base": {
+          "$type": "dimension",
+          "$value": "32px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-base"
+            }
+          }
+        },
+        "sm": {
+          "$type": "dimension",
+          "$value": "76px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-sm"
+            }
+          }
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "96px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-md"
+            }
+          }
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "52px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-lg"
+            }
+          }
+        },
+        "xl": {
+          "$type": "dimension",
+          "$value": "84px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-xl"
+            }
+          }
+        },
+        "2xl": {
+          "$type": "dimension",
+          "$value": "96px",
+          "$extensions": {
+            "prism": {
+              "df-source": "--layout-col-width-2xl"
+            }
+          }
+        }
+      }
+    },
+    "screen": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "640px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--screen-sm"
+          }
+        }
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "768px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--screen-md"
+          }
+        }
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "960px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--screen-lg"
+          }
+        }
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "1440px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--screen-xl"
+          }
+        }
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "1600px",
+        "$extensions": {
+          "prism": {
+            "df-source": "--screen-2xl"
+          }
+        }
+      }
+    }
+  },
+  "alt": {
+    "$description": "designframe alt-mode overlay — emitted from PRISM.md (prism parse). Alt palette — secondary brand identity (e.g. campaign mode)",
+    "color": {
+      "theme": {
+        "default": {
+          "bg": {
+            "$ref": "{color.brand-alt.background}"
+          },
+          "fg": {
+            "$ref": "{color.brand-alt.primary}"
+          }
+        }
+      }
+    }
+  },
+  "dark": {
+    "$description": "designframe dark-mode overlay — emitted from PRISM.md (prism parse). Dark mode — bg flips to primary (near-black), fg to invert (white)",
+    "color": {
+      "theme": {
+        "default": {
+          "bg": {
+            "$ref": "{color.theme.invert.bg}"
+          },
+          "fg": {
+            "$ref": "{color.theme.invert.fg}"
+          }
+        }
+      },
+      "bg": {
+        "canvas": {
+          "$ref": "{color.theme.invert.bg}"
+        }
+      },
+      "fg": {
+        "default": {
+          "$ref": "{color.theme.invert.fg}"
+        }
+      }
+    }
+  },
+  "key": {
+    "$description": "designframe key-mode overlay — emitted from PRISM.md (prism parse). Key brand color as canvas — saturated section bg with component key↔invert swap",
+    "color": {
+      "theme": {
+        "default": {
+          "bg": {
+            "$ref": "{color.theme.key.bg}"
+          },
+          "fg": {
+            "$ref": "{color.theme.key.fg}"
+          }
+        }
+      }
+    }
+  },
+  "$themes": [
+    {
+      "id": "light",
+      "name": "Light",
+      "selectedTokenSets": {
+        "global": "enabled"
+      }
+    },
+    {
+      "id": "alt",
+      "name": "Alt",
+      "selectedTokenSets": {
+        "global": "source",
+        "alt": "enabled"
+      }
+    },
+    {
+      "id": "dark",
+      "name": "Dark",
+      "selectedTokenSets": {
+        "global": "source",
+        "dark": "enabled"
+      }
+    },
+    {
+      "id": "key",
+      "name": "Key",
+      "selectedTokenSets": {
+        "global": "source",
+        "key": "enabled"
+      }
+    }
+  ],
+  "$metadata": {
+    "tokenSetOrder": [
+      "global",
+      "alt",
+      "dark",
+      "key"
+    ],
+    "generatedBy": "df-prism/tools/emit-tokens-studio.mjs",
+    "generatedFrom": "prism-designframe",
+    "generatedAt": "2026-05-18"
+  }
+}
