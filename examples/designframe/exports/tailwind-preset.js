@@ -175,19 +175,24 @@ module.exports = {
       },
       "fontFamily": {
         "heading": [
-          "headingFontFamily",
+          "Satoshi",
           "sans-serif",
           "system-ui"
         ],
         "body": [
-          "bodyFontFamily",
+          "General Sans",
           "sans-serif",
           "system-ui"
         ],
         "display": [
-          "displayFontFamily",
+          "Satoshi",
           "sans-serif",
           "system-ui"
+        ],
+        "mono": [
+          "Commit Mono",
+          "ui-monospace",
+          "monospace"
         ]
       },
       "borderRadius": {

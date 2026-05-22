@@ -61,7 +61,7 @@ DF's type scale is anchored on a **16px base font-size + 24px line-height** rhyt
 
 ### Font roles
 
-Three font-family roles (`heading`, `body`, `display`) populated via `@font-face` declarations in `df-input.css` CONFIG Fonts. Default DF setup uses DIN2014 for heading/display and NotoSans for body. Replace via `typography.family.*` in frontmatter when forking.
+Four font-family roles (`heading`, `body`, `display`, `mono`) populated via `@font-face` declarations in `df-input.css` CONFIG Fonts. Canonical Designframe setup is an **ITF foundry-house mono-family system**: **Satoshi** (Indian Type Foundry, SIL OFL, variable axis weight 300-900, upright + italic) for `heading` + `display` (the distinctive geometric grotesque echoing the three-circle mark); **General Sans** (Indian Type Foundry, SIL OFL, variable axis weight 200-700, upright + italic) for `body` (ITF's restrained sibling, grid-derived neutral grotesque tuned for body-text legibility — the Apple SF Pro Display + SF Pro Text mono-family pattern applied across two ITF roles); **Commit Mono** (Eigil Nikolajsen, SIL OFL, variable axis weight 300-700, ligature-free by design) for `mono` code surfaces. All three faces shipped in the kit at `assets/fonts/` (no external CDN dependency). Forking brands replace `typography.family.*` $value arrays + the matching @font-face declarations in df-input.css.
 
 ### Anti-patterns
 
@@ -165,6 +165,10 @@ The Designframe identity is **a two-color monochrome system**: brand-dark `#2222
 
 ### Logo
 
+### Fonts
+
+Designframe's canonical typography is an **ITF foundry-house mono-family system**: Satoshi for `heading` + `display` tiers (the distinctive geometric grotesque), General Sans for `body` tier (the restrained sibling grid-derived for body legibility), Commit Mono for `mono` code surfaces. The three faces are designed within the same modernist-restraint philosophy — two from ITF (Satoshi + General Sans share design DNA, role-calibrated for display vs body) and one cross-foundry mono designed with aligned considered-typography philosophy. All variable-axis woff2 files shipped in the kit at `assets/fonts/` — no external CDN dependencies. The mono-family pattern mirrors Apple's SF Pro Display + SF Pro Text approach: one design language, multiple role-calibrated voices. Differentiation between heading/display (Satoshi) and body (General Sans) comes from face character difference; differentiation within heading/display tier comes from scale + weight.
+
 ### Do's and Don'ts (asset-specific)
 
 - **Do** use the wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
@@ -181,7 +185,7 @@ In dark mode, the default theme context redirects to the invert context. Brand p
 
 ### alt
 
-Alt-palette mode — every default-theme context redirects to its alt-palette equivalent. Brand-alt primitives carry the alternate identity (red/orange vs. pink/blue).
+Alt-palette mode — every default-theme context redirects to its alt-palette equivalent. Brand-alt primitives carry the alternate identity. For canonical Designframe, that's the dramatic-key gradient (`#000000` → `#222222`) and a wider-range atmospheric backdrop (`#cccccc` → `#ffffff`) — both still monochrome, but visibly more contrast-driven than the flat default theme. Other brands forking Designframe carry their own alt-palette character via `color.brand-alt.*` overrides.
 
 ### key
 
@@ -189,7 +193,7 @@ Key mode — the full page treats every default-theme section as if `.theme.key`
 
 ## Components — Premium
 
-(Reserved for `df-*` premium components — see workspace `df-ui/CLAUDE.md` "Free vs Premium Boundary". Not yet authored in PRISM.md; current premium components are defined in `df-input.css` SECTION CONFIG Custom CSS Classes pending PRISM.md migration.)
+(Reserved for `df-*` premium components — see workspace `df-ui/CLAUDE.md` "Free vs Premium Boundary". Current premium components live in `df-input.css` SECTION CONFIG Custom CSS Classes. Whether they get ported to PRISM.md tokens or stay runtime-only is an open decision (TBD); the section is held as a reserved namespace so consumers know to expect either nothing or token-tier entries here in a future release.)
 
 ## Lossiness & Constraints
 

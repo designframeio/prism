@@ -70,9 +70,10 @@
   --shader-light: 0.15;
   --shader-base: 0.6;
   --shader-heavy: 0.85;
-  --font-heading: headingFontFamily, sans-serif, system-ui;
-  --font-body: bodyFontFamily, sans-serif, system-ui;
-  --font-display: displayFontFamily, sans-serif, system-ui;
+  --font-heading: Satoshi, sans-serif, system-ui;
+  --font-body: "General Sans", sans-serif, system-ui;
+  --font-display: Satoshi, sans-serif, system-ui;
+  --font-mono: "Commit Mono", ui-monospace, monospace;
   --text-base-size: 16px;
   --text-base-lh: 24px;
   --text-d1-size: 96px;
@@ -211,6 +212,11 @@
   --asset-logo-mark-on-dark: url("assets/logos/df-mark-on-dark.svg");
   --asset-logo-mark-favicon: url("assets/logos/favicon.svg");
   --asset-logo-favicon: url("assets/logos/favicon.svg");
+  --asset-font-satoshi: url("assets/fonts/Satoshi-Variable.woff2");
+  --asset-font-satoshi-italic: url("assets/fonts/Satoshi-VariableItalic.woff2");
+  --asset-font-general-sans: url("assets/fonts/GeneralSans-Variable.woff2");
+  --asset-font-general-sans-italic: url("assets/fonts/GeneralSans-VariableItalic.woff2");
+  --asset-font-commit-mono: url("assets/fonts/CommitMono-Variable.woff2");
 }
 
 
@@ -705,6 +711,91 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <dt>$path</dt><dd><code>assets/logos/favicon.svg</code></dd>
     </dl>
     <p class="asset-guidance">Reserved for contexts where the square logo.mark canvas doesn't fit a target surface's icon mask (browser tabs, OS app dock, system notification badges that crop to a circular mask). At any size where logo.mark renders cleanly within its container, prefer logo.mark — the favicon is a mask-shape adaptation, not a scale-down alternative. </p>
+  </article>
+
+  <article class="asset-card">
+    <header class="asset-head">
+      <code class="asset-path">font.satoshi</code>
+      <p class="asset-description">Designframe canonical heading/body/display face. Satoshi by Indian Type Foundry — variable axis weight 300-900, upright. Geometric grotesque with circular round-letters that echo the three-circle mark and hard squared terminals that echo the &quot;DESIGNFRAME&quot; wordmark.</p>
+    </header>
+    <div class="asset-preview asset-preview--primary">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
+    </div>
+    
+    <dl class="asset-meta">
+      <dt>Clear-space</dt><dd><code>—</code></dd>
+      <dt>Min-size</dt><dd><code>—</code></dd>
+      <dt>$path</dt><dd><code>assets/fonts/Satoshi-Variable.woff2</code></dd>
+    </dl>
+    <p class="asset-guidance">The primary typeface for all Designframe text surfaces — every heading, paragraph, label, button, and display headline resolves to Satoshi via typography.family.{heading,body,display}. The variable weight axis (300-900) provides continuous interpolation, allowing the design system to express tier-differentiation through weight without shipping multiple static files. Match font-weight CSS to design intent: 300-400 for body text and lightweight UI, 500-600 for emphasis, 700-900 for display headlines. Forking brands replace this asset with their own primary face and update typography.family.* $value arrays to match. </p>
+  </article>
+
+  <article class="asset-card">
+    <header class="asset-head">
+      <code class="asset-path">font.satoshi-italic</code>
+      <p class="asset-description">Satoshi italic companion — variable axis weight 300-900, italic style. Separate woff2 file (not a slnt/ital axis on the upright variable) per Indian Type Foundry's release convention. Pairs with font.satoshi under the same 'Satoshi' family name; CSS resolves to this file when font-style:italic is requested.</p>
+    </header>
+    <div class="asset-preview asset-preview--primary">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
+    </div>
+    
+    <dl class="asset-meta">
+      <dt>Clear-space</dt><dd><code>—</code></dd>
+      <dt>Min-size</dt><dd><code>—</code></dd>
+      <dt>$path</dt><dd><code>assets/fonts/Satoshi-VariableItalic.woff2</code></dd>
+    </dl>
+    <p class="asset-guidance">Used implicitly when CSS calls for italic Satoshi (em, cite, em.text-secondary, etc.). Don't reference directly in markup — italic resolution happens through the cascade via font-style:italic. Shipping this file alongside font.satoshi ensures italic text renders in the canonical face rather than falling back to system italic. Forks that don't need italics can omit this file and the corresponding @font-face block in df-input.css. </p>
+  </article>
+
+  <article class="asset-card">
+    <header class="asset-head">
+      <code class="asset-path">font.general-sans</code>
+      <p class="asset-description">Designframe canonical body face. General Sans by Indian Type Foundry — variable axis weight 200-700, upright. ITF's foundry-house mono-family sibling to Satoshi: grid-derived neutral grotesque, restrained character tuned for body-text legibility. Designed by the same team within the same modernist-restraint philosophy as Satoshi + Erode.</p>
+    </header>
+    <div class="asset-preview asset-preview--primary">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
+    </div>
+    
+    <dl class="asset-meta">
+      <dt>Clear-space</dt><dd><code>—</code></dd>
+      <dt>Min-size</dt><dd><code>—</code></dd>
+      <dt>$path</dt><dd><code>assets/fonts/GeneralSans-Variable.woff2</code></dd>
+    </dl>
+    <p class="asset-guidance">The body face for prose tiers. Used by typography.family.body. Variable axis (200-700) provides continuous interpolation; body default at 400 weight, emphasis (font-bold) at 600-700. Pairs with Satoshi via foundry-house mono-family pattern — same ITF design language, role-calibrated for display vs body. Forking brands can swap to another body face without disrupting the heading/display tier. </p>
+  </article>
+
+  <article class="asset-card">
+    <header class="asset-head">
+      <code class="asset-path">font.general-sans-italic</code>
+      <p class="asset-description">General Sans italic companion — variable axis weight 200-700, italic style. True cursive italic (different letterforms from upright, not slant axis) per ITF convention. Shares the 'General Sans' family name with the upright file; CSS resolves to this file when font-style:italic is requested.</p>
+    </header>
+    <div class="asset-preview asset-preview--primary">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
+    </div>
+    
+    <dl class="asset-meta">
+      <dt>Clear-space</dt><dd><code>—</code></dd>
+      <dt>Min-size</dt><dd><code>—</code></dd>
+      <dt>$path</dt><dd><code>assets/fonts/GeneralSans-VariableItalic.woff2</code></dd>
+    </dl>
+    <p class="asset-guidance">Used implicitly when CSS calls for italic body text (em, cite, em.text-secondary, etc.). Don't reference directly in markup — italic resolution happens through the cascade. Shipping this file ensures italic emphasis renders in canonical General Sans rather than falling back to system italic. </p>
+  </article>
+
+  <article class="asset-card">
+    <header class="asset-head">
+      <code class="asset-path">font.commit-mono</code>
+      <p class="asset-description">Designframe canonical mono face. Commit Mono by Eigil Nikolajsen — variable axis weight 300-700. Geometric mono construction with intentionally ligature-free design (&quot;Ligatures fundamentally alter the perception of code by visually merging multiple characters into one, which can make it harder to parse what's actually written&quot; — Eigil). Used by typography.family.mono for code surfaces.</p>
+    </header>
+    <div class="asset-preview asset-preview--primary">
+      <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
+    </div>
+    
+    <dl class="asset-meta">
+      <dt>Clear-space</dt><dd><code>—</code></dd>
+      <dt>Min-size</dt><dd><code>—</code></dd>
+      <dt>$path</dt><dd><code>assets/fonts/CommitMono-Variable.woff2</code></dd>
+    </dl>
+    <p class="asset-guidance">The mono face for all code-flavored text — code fences, inline &lt;code&gt;, token paths in design-system.html, terminal-style demos, IDE-flavored documentation. Resolves to this file via typography.family.mono → --font-mono → Tailwind utility .font-mono. The ligature-free design is deliberate — programming ligatures (=&gt;, !=, ===) merge syntactically-distinct characters into single glyphs which can mislead readers and AI agents parsing the code. Designframe inherits this no-ligature stance as canonical. Forks wanting ligatures can swap to another mono face (JetBrains Mono, Fira Code, etc.) without changing the typography.family.mono structure. </p>
   </article>
   </div>
 </section>

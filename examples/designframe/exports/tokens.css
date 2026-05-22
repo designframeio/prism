@@ -61,9 +61,10 @@
   --shader-light: 0.15;
   --shader-base: 0.6;
   --shader-heavy: 0.85;
-  --font-heading: headingFontFamily, sans-serif, system-ui;
-  --font-body: bodyFontFamily, sans-serif, system-ui;
-  --font-display: displayFontFamily, sans-serif, system-ui;
+  --font-heading: Satoshi, sans-serif, system-ui;
+  --font-body: "General Sans", sans-serif, system-ui;
+  --font-display: Satoshi, sans-serif, system-ui;
+  --font-mono: "Commit Mono", ui-monospace, monospace;
   --text-base-size: 16px;
   --text-base-lh: 24px;
   --text-d1-size: 96px;
@@ -202,4 +203,9 @@
   --asset-logo-mark-on-dark: url("../assets/logos/df-mark-on-dark.svg");
   --asset-logo-mark-favicon: url("../assets/logos/favicon.svg");
   --asset-logo-favicon: url("../assets/logos/favicon.svg");
+  --asset-font-satoshi: url("../assets/fonts/Satoshi-Variable.woff2");
+  --asset-font-satoshi-italic: url("../assets/fonts/Satoshi-VariableItalic.woff2");
+  --asset-font-general-sans: url("../assets/fonts/GeneralSans-Variable.woff2");
+  --asset-font-general-sans-italic: url("../assets/fonts/GeneralSans-VariableItalic.woff2");
+  --asset-font-commit-mono: url("../assets/fonts/CommitMono-Variable.woff2");
 }

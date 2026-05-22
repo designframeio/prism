@@ -135,9 +135,10 @@ shader:
 
 typography:
   family:
-    heading: { $type: fontFamily, $value: [ "headingFontFamily", "sans-serif", "system-ui" ], $brand-owned: true, $description: "Heading font stack. Source: --font-heading + --font-heading-alt1/alt2. Replace headingFontFamily token at @font-face when forking.", $df-source: --font-heading }
-    body: { $type: fontFamily, $value: [ "bodyFontFamily", "sans-serif", "system-ui" ], $brand-owned: true, $description: "Body font stack. Source: --font-body + alt1/alt2.", $df-source: --font-body }
-    display: { $type: fontFamily, $value: [ "displayFontFamily", "sans-serif", "system-ui" ], $brand-owned: true, $description: Display font stack. Same as heading by DF convention; carve out if brand wants distinct display face., $df-source: --font-display }
+    heading: { $type: fontFamily, $value: [ "Satoshi", "sans-serif", "system-ui" ], $brand-owned: true, $description: "Designframe canonical heading face — Satoshi (Indian Type Foundry, SIL OFL). Distinctive geometric grotesque that echoes the three-circle mark's construction. Heading + display share Satoshi; body uses General Sans (ITF's restrained sibling) per the foundry-house mono-family pattern. Forking brands replace 'Satoshi' here + the matching @font-face src in df-input.css.", $df-source: --font-heading, $font-asset: "{font.satoshi}" }
+    body: { $type: fontFamily, $value: [ "General Sans", "sans-serif", "system-ui" ], $brand-owned: true, $description: "Designframe canonical body face — General Sans (Indian Type Foundry, SIL OFL). ITF's foundry-house mono-family sibling to Satoshi: same design language, role-calibrated as a restrained grid-derived neutral grotesque tuned for body-text legibility. The pairing reads as a deliberate foundry-house system (Apple SF Pro Display + SF Pro Text pattern). Forking brands can swap to another body face by changing this $value + the matching @font-face binding.", $df-source: --font-body, $font-asset: "{font.general-sans}" }
+    display: { $type: fontFamily, $value: [ "Satoshi", "sans-serif", "system-ui" ], $brand-owned: true, $description: "Designframe canonical display face — same Satoshi as heading. Display + heading share the distinctive geometric grotesque; body diverges to General Sans (the restrained ITF sibling). The 2:1 split within the foundry-house mono-family system creates hierarchy between display-tier and body-tier without importing a second foundry tradition. Brands wanting a distinct display face carve out by changing this $value without affecting heading/body.", $df-source: --font-display, $font-asset: "{font.satoshi}" }
+    mono: { $type: fontFamily, $value: [ "Commit Mono", "ui-monospace", "monospace" ], $brand-owned: true, $description: "Designframe canonical mono face — Commit Mono (Eigil Nikolajsen, SIL OFL). For code surfaces (PRISM.md fences, design-system.html token paths, inline <code>, IDE-flavored docs). Geometric construction + ligature-free design (deliberate authorial choice by Eigil) aligns with Designframe's 'math + structural defaults' philosophy.", $df-source: --font-mono, $font-asset: "{font.commit-mono}" }
   scale:
     base: { size: { $type: dimension, $value: "16px", $system-owned: true, $description: Base type size. Equivalent to 1rem and to text-p3., $df-source: --text-base-size }, lh: { $type: dimension, $value: "24px", $system-owned: true, $description: Base line height. Anchor for all DF type rhythm. See df-rules.md §lineHeight-anchor., $df-source: --text-base-lh } }
     d1: { size: { $type: dimension, $value: "96px", $system-owned: true, $df-source: --text-d1-size }, lh: { $type: number, $value: 1, $system-owned: true, $df-source: --text-d1-lh } }
@@ -687,7 +688,7 @@ DF's type scale is anchored on a **16px base font-size + 24px line-height** rhyt
 
 ### Font roles
 
-Three font-family roles (`heading`, `body`, `display`) populated via `@font-face` declarations in `df-input.css` CONFIG Fonts. Default DF setup uses DIN2014 for heading/display and NotoSans for body. Replace via `typography.family.*` in frontmatter when forking.
+Four font-family roles (`heading`, `body`, `display`, `mono`) populated via `@font-face` declarations in `df-input.css` CONFIG Fonts. Canonical Designframe setup is an **ITF foundry-house mono-family system**: **Satoshi** (Indian Type Foundry, SIL OFL, variable axis weight 300-900, upright + italic) for `heading` + `display` (the distinctive geometric grotesque echoing the three-circle mark); **General Sans** (Indian Type Foundry, SIL OFL, variable axis weight 200-700, upright + italic) for `body` (ITF's restrained sibling, grid-derived neutral grotesque tuned for body-text legibility — the Apple SF Pro Display + SF Pro Text mono-family pattern applied across two ITF roles); **Commit Mono** (Eigil Nikolajsen, SIL OFL, variable axis weight 300-700, ligature-free by design) for `mono` code surfaces. All three faces shipped in the kit at `assets/fonts/` (no external CDN dependency). Forking brands replace `typography.family.*` $value arrays + the matching @font-face declarations in df-input.css.
 
 ```token
 typography.scale.p3.size:
@@ -896,6 +897,75 @@ logo.favicon:
     $ref: "{size.element.sub}"
 ```
 
+### Fonts
+
+Designframe's canonical typography is an **ITF foundry-house mono-family system**: Satoshi for `heading` + `display` tiers (the distinctive geometric grotesque), General Sans for `body` tier (the restrained sibling grid-derived for body legibility), Commit Mono for `mono` code surfaces. The three faces are designed within the same modernist-restraint philosophy — two from ITF (Satoshi + General Sans share design DNA, role-calibrated for display vs body) and one cross-foundry mono designed with aligned considered-typography philosophy. All variable-axis woff2 files shipped in the kit at `assets/fonts/` — no external CDN dependencies. The mono-family pattern mirrors Apple's SF Pro Display + SF Pro Text approach: one design language, multiple role-calibrated voices. Differentiation between heading/display (Satoshi) and body (General Sans) comes from face character difference; differentiation within heading/display tier comes from scale + weight.
+
+```asset
+font.satoshi:
+  $type: font-file
+  $path: assets/fonts/Satoshi-Variable.woff2
+  $format: woff2-variations
+  $description: Designframe canonical heading/body/display face. Satoshi by Indian Type Foundry — variable axis weight 300-900, upright. Geometric grotesque with circular round-letters that echo the three-circle mark and hard squared terminals that echo the "DESIGNFRAME" wordmark.
+  $applied-guidance: |
+    The primary typeface for all Designframe text surfaces — every heading, paragraph, label, button, and display headline resolves to Satoshi via typography.family.{heading,body,display}. The variable weight axis (300-900) provides continuous interpolation, allowing the design system to express tier-differentiation through weight without shipping multiple static files. Match font-weight CSS to design intent: 300-400 for body text and lightweight UI, 500-600 for emphasis, 700-900 for display headlines. Forking brands replace this asset with their own primary face and update typography.family.* $value arrays to match.
+  $license: SIL OFL 1.1
+  $designer: Indian Type Foundry
+  $homepage: https://www.fontshare.com/fonts/satoshi
+```
+
+```asset
+font.satoshi-italic:
+  $type: font-file
+  $path: assets/fonts/Satoshi-VariableItalic.woff2
+  $format: woff2-variations
+  $description: Satoshi italic companion — variable axis weight 300-900, italic style. Separate woff2 file (not a slnt/ital axis on the upright variable) per Indian Type Foundry's release convention. Pairs with font.satoshi under the same 'Satoshi' family name; CSS resolves to this file when font-style:italic is requested.
+  $applied-guidance: |
+    Used implicitly when CSS calls for italic Satoshi (em, cite, em.text-secondary, etc.). Don't reference directly in markup — italic resolution happens through the cascade via font-style:italic. Shipping this file alongside font.satoshi ensures italic text renders in the canonical face rather than falling back to system italic. Forks that don't need italics can omit this file and the corresponding @font-face block in df-input.css.
+  $license: SIL OFL 1.1
+  $designer: Indian Type Foundry
+  $homepage: https://www.fontshare.com/fonts/satoshi
+```
+
+```asset
+font.general-sans:
+  $type: font-file
+  $path: assets/fonts/GeneralSans-Variable.woff2
+  $format: woff2-variations
+  $description: "Designframe canonical body face. General Sans by Indian Type Foundry — variable axis weight 200-700, upright. ITF's foundry-house mono-family sibling to Satoshi: grid-derived neutral grotesque, restrained character tuned for body-text legibility. Designed by the same team within the same modernist-restraint philosophy as Satoshi + Erode."
+  $applied-guidance: |
+    The body face for prose tiers. Used by typography.family.body. Variable axis (200-700) provides continuous interpolation; body default at 400 weight, emphasis (font-bold) at 600-700. Pairs with Satoshi via foundry-house mono-family pattern — same ITF design language, role-calibrated for display vs body. Forking brands can swap to another body face without disrupting the heading/display tier.
+  $license: SIL OFL 1.1
+  $designer: Indian Type Foundry
+  $homepage: https://www.fontshare.com/fonts/general-sans
+```
+
+```asset
+font.general-sans-italic:
+  $type: font-file
+  $path: assets/fonts/GeneralSans-VariableItalic.woff2
+  $format: woff2-variations
+  $description: General Sans italic companion — variable axis weight 200-700, italic style. True cursive italic (different letterforms from upright, not slant axis) per ITF convention. Shares the 'General Sans' family name with the upright file; CSS resolves to this file when font-style:italic is requested.
+  $applied-guidance: |
+    Used implicitly when CSS calls for italic body text (em, cite, em.text-secondary, etc.). Don't reference directly in markup — italic resolution happens through the cascade. Shipping this file ensures italic emphasis renders in canonical General Sans rather than falling back to system italic.
+  $license: SIL OFL 1.1
+  $designer: Indian Type Foundry
+  $homepage: https://www.fontshare.com/fonts/general-sans
+```
+
+```asset
+font.commit-mono:
+  $type: font-file
+  $path: assets/fonts/CommitMono-Variable.woff2
+  $format: woff2-variations
+  $description: Designframe canonical mono face. Commit Mono by Eigil Nikolajsen — variable axis weight 300-700. Geometric mono construction with intentionally ligature-free design ("Ligatures fundamentally alter the perception of code by visually merging multiple characters into one, which can make it harder to parse what's actually written" — Eigil). Used by typography.family.mono for code surfaces.
+  $applied-guidance: |
+    The mono face for all code-flavored text — code fences, inline <code>, token paths in design-system.html, terminal-style demos, IDE-flavored documentation. Resolves to this file via typography.family.mono → --font-mono → Tailwind utility .font-mono. The ligature-free design is deliberate — programming ligatures (=>, !=, ===) merge syntactically-distinct characters into single glyphs which can mislead readers and AI agents parsing the code. Designframe inherits this no-ligature stance as canonical. Forks wanting ligatures can swap to another mono face (JetBrains Mono, Fira Code, etc.) without changing the typography.family.mono structure.
+  $license: SIL OFL 1.1
+  $designer: Eigil Nikolajsen
+  $homepage: https://commitmono.com
+```
+
 ### Do's and Don'ts (asset-specific)
 
 - **Do** use the wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
@@ -936,7 +1006,7 @@ color.fg.default:
 
 ### alt
 
-Alt-palette mode — every default-theme context redirects to its alt-palette equivalent. Brand-alt primitives carry the alternate identity (red/orange vs. pink/blue).
+Alt-palette mode — every default-theme context redirects to its alt-palette equivalent. Brand-alt primitives carry the alternate identity. For canonical Designframe, that's the dramatic-key gradient (`#000000` → `#222222`) and a wider-range atmospheric backdrop (`#cccccc` → `#ffffff`) — both still monochrome, but visibly more contrast-driven than the flat default theme. Other brands forking Designframe carry their own alt-palette character via `color.brand-alt.*` overrides.
 
 ```token
 color.theme.default.bg:
@@ -968,7 +1038,7 @@ color.theme.default.fg:
 
 ## Components — Premium
 
-(Reserved for `df-*` premium components — see workspace `df-ui/CLAUDE.md` "Free vs Premium Boundary". Not yet authored in PRISM.md; current premium components are defined in `df-input.css` SECTION CONFIG Custom CSS Classes pending PRISM.md migration.)
+(Reserved for `df-*` premium components — see workspace `df-ui/CLAUDE.md` "Free vs Premium Boundary". Current premium components live in `df-input.css` SECTION CONFIG Custom CSS Classes. Whether they get ported to PRISM.md tokens or stay runtime-only is an open decision (TBD); the section is held as a reserved namespace so consumers know to expect either nothing or token-tier entries here in a future release.)
 
 ## Lossiness & Constraints
 
