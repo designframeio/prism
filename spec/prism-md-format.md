@@ -1056,7 +1056,7 @@ External URLs in `$path` are **not supported in `prism-spec/1.0`** — deferred 
 
 ### 19.5 Cross-references between tokens and assets
 
-Tokens MAY `$ref` an asset path (e.g., a `background-image` token could reference `{logo.primary}`). This composition pattern is rare but supported — emitters that render both tokens and assets together (showcase.html, design-system.html) MUST resolve cross-namespace references correctly.
+Tokens MAY `$ref` an asset path (e.g., a `background-image` token could reference `{logo.primary}`). This composition pattern is rare but supported — emitters that render both tokens and assets together (`design-system.html`) MUST resolve cross-namespace references correctly.
 
 ### 19.6 Validation rules (PRISM.md Layer 1 additions)
 
@@ -1083,7 +1083,6 @@ Assets emit differently per consumer target:
 | `figma-tokens-studio.json` | Skipped — Tokens Studio reads tokens, not assets |
 | `design-md.md` | Asset paths emit in `## Assets` section as markdown image references with usage tables |
 | `design-system.html` | Full asset gallery — rendered images, usage rules, variants, downloads |
-| `showcase.html` | Skipped (token-only regression fixture) |
 
 ---
 
