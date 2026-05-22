@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Designframe favicon">
-  <defs>
-    <linearGradient id="df-fav-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#fb03b9"/>
-      <stop offset="100%" stop-color="#3883ff"/>
-    </linearGradient>
-  </defs>
-  <rect x="0" y="0" width="32" height="32" rx="4" ry="4" fill="url(#df-fav-grad)"/>
-  <text x="16" y="23" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="800" letter-spacing="-0.04em" fill="#ffffff">d</text>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_9110_105)">
+<path d="M512 1024C794.77 1024 1024 794.77 1024 512C1024 229.23 794.77 0 512 0C229.23 0 0 229.23 0 512C0 794.77 229.23 1024 512 1024Z" fill="white"/>
+<path d="M792.064 743.936C920.159 743.936 1024 640.095 1024 512C1024 383.905 920.159 280.064 792.064 280.064C663.969 280.064 560.128 383.905 560.128 512C560.128 640.095 663.969 743.936 792.064 743.936Z" fill="#222222"/>
+<path d="M395.776 676.352C486.545 676.352 560.128 602.769 560.128 512C560.128 421.231 486.545 347.648 395.776 347.648C305.007 347.648 231.424 421.231 231.424 512C231.424 602.769 305.007 676.352 395.776 676.352Z" fill="#222222"/>
+<path d="M115.712 627.712C179.618 627.712 231.424 575.906 231.424 512C231.424 448.094 179.618 396.288 115.712 396.288C51.806 396.288 0 448.094 0 512C0 575.906 51.806 627.712 115.712 627.712Z" fill="#222222"/>
+</g>
+<defs>
+<clipPath id="clip0_9110_105">
+<rect width="1024" height="1024" fill="white"/>
+</clipPath>
+</defs>
 </svg>

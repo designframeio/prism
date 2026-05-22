@@ -5,24 +5,24 @@
       "brand": {
         "key": {
           "$type": "color",
-          "$value": "#fb03b9",
-          "$description": "Brand key color — gradient start. Pink, saturated.",
+          "$value": "#222222",
+          "$description": "Brand key — flat brand-dark. Default theme is monochrome; key-end shares this value.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-key",
-              "applied-guidance": "Use as the brand-identity accent — button-gradient start, key-tinted backgrounds, link-hover via `.text-key`. When key is intended to be a gradient (the default), color.brand.key-end is the paired end-stop. Don't apply key as a solid-fill brand color unless the design specifically calls for it; default to the gradient pair.\n",
-              "ai-hint": "When generating brand-key UI elements, prefer gradient utilities (bg-gradient-key, button.gradient) over solid bg-key + text-key in isolation. The gradient is the brand; solid-key applications can look stylistically off without surrounding gradient context.\n"
+              "applied-guidance": "Use as the brand-identity accent — button-key fills, key-tinted backgrounds, link-hover via `.text-key`. In the default theme, key and key-end share the value #222222, so any \"gradient\" rendering collapses to a flat brand-dark surface. For an actual gradient brand experience, switch to mode:alt where the alt-key gradient (#000000 → #222222) is operative.\n",
+              "ai-hint": "When generating brand-key UI elements, treat key as a flat color in default theme — gradient utilities like bg-gradient-key resolve to a degenerate (flat) gradient that's visually identical to bg-key. Only in mode:alt does the gradient experience activate; design with that mode-switch in mind if a gradient is the desired brand feel.\n"
             }
           }
         },
         "key-end": {
           "$type": "color",
-          "$value": "#3883ff",
-          "$description": "Brand key gradient end-stop. Blue.",
+          "$value": "#222222",
+          "$description": "Brand key gradient end-stop. Matches key in monochrome default theme (no operative gradient).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-key-end",
-              "applied-guidance": "Paired with color.brand.key in every gradient — set them equal for a solid-key brand. Direction is controlled by color.brand.background-direction at theme level (default: right top).\n"
+              "applied-guidance": "Paired with color.brand.key for the default-theme key gradient. Both stops are #222222 in the canonical Designframe brand, producing a flat (degenerate) gradient. Direction is controlled by color.brand.background-direction at theme level (default: right top) but has no visual effect when both stops match. The mode:alt overlay provides the actual gradient experience via color.brand-alt.key (#000000) → color.brand-alt.key-end (#222222).\n"
             }
           }
         },
@@ -40,12 +40,12 @@
         },
         "secondary": {
           "$type": "color",
-          "$value": "#888888",
-          "$description": "Secondary text — mid gray for help text.",
+          "$value": "#757575",
+          "$description": "Secondary text — mid-grey passing WCAG AA on white (4.61:1). Industry parallel — Material Design medium-emphasis text.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-secondary",
-              "applied-guidance": "Use via `text-secondary` for de-emphasized but still-readable content — help text, captions, metadata, form hints, footer subtext. Carries less attention weight than `text-primary` without dropping below WCAG AA body contrast on white. Inside `.theme.invert` / `.theme.key`, the cascade swaps to an appropriately lighter equivalent. Don't reach for `text-gray-500` or hardcoded grays — those bypass the cascade.\n"
+              "applied-guidance": "Use via `text-secondary` for de-emphasized but still-readable content — help text, captions, metadata, form hints, footer subtext. Carries less attention weight than `text-primary` while remaining body-text accessible (4.61:1 contrast on white, passes WCAG AA normal). Inside `.theme.invert` / `.theme.key`, the cascade swaps to an appropriately lighter equivalent. Don't reach for `text-gray-500` or hardcoded grays — those bypass the cascade and may fail accessibility.\n"
             }
           }
         },
@@ -75,7 +75,7 @@
         "disabled": {
           "$type": "color",
           "$value": "#cccccc",
-          "$description": "DF disabled state color. Distinct from color.brand.tertiary semantically but may share value.",
+          "$description": "Disabled-state UI. Shares value with tertiary by intent — both target low-emphasis visual weight. WCAG carves out 'inactive UI components' from contrast requirements.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-disabled"
@@ -85,7 +85,7 @@
         "background": {
           "$type": "color",
           "$value": "#ffffff",
-          "$description": "Base page background.",
+          "$description": "Default page canvas — pure white. Matches brand-asset reality (mark on-dark variant + favicon outer ring).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background"
@@ -94,8 +94,8 @@
         },
         "background-start": {
           "$type": "color",
-          "$value": "#ffe6f8",
-          "$description": "DF gradient background start (optional). Set same as color.brand.background if no gradient bg.",
+          "$value": "#dddddd",
+          "$description": "Default-theme gradient bg start (lower-left corner). The lightness-matched inverse of #222222 (L* 14 ↔ L* 86) — atmospheric only, not for text contrast. Brand-math: gradient bridges from brand-dark's optical mirror to pure white.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-start"
@@ -104,8 +104,8 @@
         },
         "background-end": {
           "$type": "color",
-          "$value": "#ebf3ff",
-          "$description": "DF gradient background end (optional).",
+          "$value": "#ffffff",
+          "$description": "Default-theme gradient bg end (upper-right corner). Pure white. Gradient flows lower-left → upper-right (lift convention).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-end"
@@ -115,7 +115,7 @@
         "background-direction": {
           "$type": "string",
           "$value": "right top",
-          "$description": "CSS gradient direction for background-start → background-end pair.",
+          "$description": "CSS gradient direction — 'right top' means gradient flows TOWARD upper-right (start at lower-left, end at upper-right).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-direction"
@@ -126,8 +126,8 @@
       "brand-alt": {
         "key": {
           "$type": "color",
-          "$value": "#fa0002",
-          "$description": "Alt brand key color.",
+          "$value": "#000000",
+          "$description": "Alt-theme key (lower-left of alt-key gradient). Absolute black — the most dramatic dark stop in the system. Pairs with key-end (#222222) for the alt-key gradient. Activated in mode:alt.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-key-alt"
@@ -136,8 +136,8 @@
         },
         "key-end": {
           "$type": "color",
-          "$value": "#faa002",
-          "$description": "Alt brand key gradient end.",
+          "$value": "#222222",
+          "$description": "Alt-theme key end (upper-right of alt-key gradient). Brand-dark — the gradient resolves to the brand-canonical rest position.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-key-end-alt"
@@ -147,7 +147,7 @@
         "primary": {
           "$type": "color",
           "$value": "#0c0c0c",
-          "$description": "Alt theme primary.",
+          "$description": "Alt-theme primary text. Mirrors default primary — alt-mode keeps the same light canvas + dark-text pattern as default; only key/key-end and background-start/end actually differ.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-primary-alt"
@@ -156,8 +156,8 @@
         },
         "secondary": {
           "$type": "color",
-          "$value": "#888888",
-          "$description": "Alt theme secondary.",
+          "$value": "#757575",
+          "$description": "Alt-theme secondary text. Mirrors default secondary (WCAG AA).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-secondary-alt"
@@ -167,7 +167,7 @@
         "tertiary": {
           "$type": "color",
           "$value": "#cccccc",
-          "$description": "Alt theme tertiary.",
+          "$description": "Alt-theme tertiary. Mirrors default tertiary (decorative tier).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-tertiary-alt"
@@ -177,7 +177,7 @@
         "invert": {
           "$type": "color",
           "$value": "#ffffff",
-          "$description": "Alt theme invert.",
+          "$description": "Alt-theme invert. Mirrors default invert (pure white).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-invert-alt"
@@ -187,7 +187,7 @@
         "disabled": {
           "$type": "color",
           "$value": "#cccccc",
-          "$description": "Alt theme disabled.",
+          "$description": "Alt-theme disabled. Mirrors default disabled.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-disabled-alt"
@@ -197,7 +197,7 @@
         "background": {
           "$type": "color",
           "$value": "#ffffff",
-          "$description": "Alt theme background.",
+          "$description": "Alt-theme page canvas. Mirrors default background — same light canvas; alt theme varies via gradient stops + key colors, not via canvas inversion.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-alt"
@@ -206,8 +206,8 @@
         },
         "background-start": {
           "$type": "color",
-          "$value": "#ff9f1c",
-          "$description": "Alt gradient bg start.",
+          "$value": "#cccccc",
+          "$description": "Alt-theme gradient bg start (lower-left). Brand tertiary — visibly more atmospheric than default-theme gradient (which starts at #DDDDDD). Recognizable 'alt' feel without leaving monochrome.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-start-alt"
@@ -216,83 +216,194 @@
         },
         "background-end": {
           "$type": "color",
-          "$value": "#ffd166",
-          "$description": "Alt gradient bg end.",
+          "$value": "#ffffff",
+          "$description": "Alt-theme gradient bg end (upper-right). Pure white — alt and default gradients both resolve to white at upper-right (lift convention shared).",
           "$extensions": {
             "prism": {
               "df-source": "--qs-color-background-end-alt"
+            }
+          }
+        },
+        "background-direction": {
+          "$type": "string",
+          "$value": "right top",
+          "$description": "Alt-theme gradient direction. Matches default — lift toward upper-right.",
+          "$extensions": {
+            "prism": {
+              "df-source": "--qs-color-background-alt-direction"
             }
           }
         }
       },
       "alert": {
         "notify": {
-          "bg": {
+          "base": {
             "$type": "color",
-            "$value": "#3883ff",
-            "$description": "Notify alert background. Pairs with alert.notify.fg.",
+            "$value": "#60a5fa",
+            "$description": "Notify alert identity color — saturated blue. Use for dots, icons, focus rings, badge fills.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-notify"
+              }
+            }
+          },
+          "heading": {
+            "$type": "color",
+            "$value": "#1d4ed8",
+            "$description": "Notify alert heading text. WCAG AA on alert.notify.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-notify-heading"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "#2563eb",
+            "$description": "Notify alert body text. Slightly lighter than heading; WCAG AA on alert.notify.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-notify-text"
+              }
+            }
+          },
+          "background": {
+            "$type": "color",
+            "$value": "#dbeafe",
+            "$description": "Notify alert container background — soft blue tint. The `.alert.notify` container surface.",
             "$extensions": {
               "prism": {
                 "df-source": "--color-alert-notify-background"
               }
             }
-          },
-          "fg": {
-            "$type": "color",
-            "$value": "#ffffff",
-            "$description": "Notify alert foreground. Paired with alert.notify.bg."
           }
         },
         "warning": {
-          "bg": {
+          "base": {
             "$type": "color",
-            "$value": "#faa002",
-            "$description": "Warning alert background. Pairs with alert.warning.fg. Note: alert.warning hex placeholder; verify against df-preset.js at full extraction.",
+            "$value": "#facc15",
+            "$description": "Warning alert identity color — saturated yellow. Use for dots, icons, focus rings, badge fills.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-warning"
+              }
+            }
+          },
+          "heading": {
+            "$type": "color",
+            "$value": "#a16207",
+            "$description": "Warning alert heading text. Dark amber for WCAG AA on alert.warning.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-warning-heading"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "#ca8a04",
+            "$description": "Warning alert body text. WCAG AA on alert.warning.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-warning-text"
+              }
+            }
+          },
+          "background": {
+            "$type": "color",
+            "$value": "#fef9c3",
+            "$description": "Warning alert container background — soft yellow tint. The `.alert.warning` container surface.",
             "$extensions": {
               "prism": {
                 "df-source": "--color-alert-warning-background"
               }
             }
-          },
-          "fg": {
-            "$type": "color",
-            "$value": "#0c0c0c",
-            "$description": "Warning alert foreground. Paired with alert.warning.bg."
           }
         },
         "error": {
-          "bg": {
+          "base": {
             "$type": "color",
-            "$value": "#fa0002",
-            "$description": "Error alert background.",
+            "$value": "#f87171",
+            "$description": "Error alert identity color — saturated red.",
             "$extensions": {
               "prism": {
-                "df-source": "--color-alert-error-background",
-                "applied-guidance": "Apply to alert containers signaling error state — form validation, destructive-action confirmations, system failures. Paired with color.alert.error.fg (white) for WCAG AA contrast on body text.\n"
+                "df-source": "--color-alert-error",
+                "applied-guidance": "Apply to status indicators that need attention-level saturation: `.dot.error` indicator dots, `.badge.dot.error` chips, focus rings on form fields in error state, and the left-stripe accent on the alert container. Don't use as a container background (use color.alert.error.background instead) and don't use as body text (use color.alert.error.text instead — it's calibrated for WCAG AA on the soft-tint container).\n"
               }
             }
           },
-          "fg": {
+          "heading": {
             "$type": "color",
-            "$value": "#ffffff",
-            "$description": "Error alert foreground."
+            "$value": "#b91c1c",
+            "$description": "Error alert heading text. Dark red for WCAG AA on alert.error.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-error-heading"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "#dc2626",
+            "$description": "Error alert body text. WCAG AA on alert.error.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-error-text"
+              }
+            }
+          },
+          "background": {
+            "$type": "color",
+            "$value": "#fee2e2",
+            "$description": "Error alert container background — soft red tint.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-error-background",
+                "applied-guidance": "Apply to alert containers signaling error state — form validation, destructive-action confirmations, system failures. Pair with color.alert.error.heading (#b91c1c) for body-heading text and color.alert.error.text (#dc2626) for paragraph text; both pass WCAG AA against this soft-red surface. Don't apply error.base (#f87171) as a container background — that's the saturated identity color reserved for dots, focus rings, and badge fills, and its WCAG contrast against typical heading text is below AA.\n"
+              }
+            }
           }
         },
         "success": {
-          "bg": {
+          "base": {
             "$type": "color",
-            "$value": "#22c55e",
-            "$description": "Success alert background. Pairs with alert.success.fg. Placeholder hex pending df-preset.js extraction.",
+            "$value": "#4ade80",
+            "$description": "Success alert identity color — saturated green. Use for dots, icons, focus rings, badge fills, pass-state signaling.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-success"
+              }
+            }
+          },
+          "heading": {
+            "$type": "color",
+            "$value": "#15803d",
+            "$description": "Success alert heading text. Dark green for WCAG AA on alert.success.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-success-heading"
+              }
+            }
+          },
+          "text": {
+            "$type": "color",
+            "$value": "#16a34a",
+            "$description": "Success alert body text. WCAG AA on alert.success.background.",
+            "$extensions": {
+              "prism": {
+                "df-source": "--color-alert-success-text"
+              }
+            }
+          },
+          "background": {
+            "$type": "color",
+            "$value": "#dcfce7",
+            "$description": "Success alert container background — soft green tint. The `.alert.success` container surface.",
             "$extensions": {
               "prism": {
                 "df-source": "--color-alert-success-background"
               }
             }
-          },
-          "fg": {
-            "$type": "color",
-            "$value": "#ffffff",
-            "$description": "Success alert foreground."
           }
         }
       },
@@ -1458,7 +1569,7 @@
         "min": {
           "$type": "dimension",
           "$value": "4px",
-          "$description": "Smallest brand rounding.",
+          "$description": "Subtle softening for small surfaces — chips, badges, .rounded checkboxes, skeleton text rows. The middle tier between fully square (.base 0px) and pill (.full 9999px). Preserves the .rounded checkbox variant as semantically distinct from plain-square.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-rounded-min"
@@ -1467,8 +1578,8 @@
         },
         "base": {
           "$type": "dimension",
-          "$value": "8px",
-          "$description": "Base element rounding.",
+          "$value": "0px",
+          "$description": "Base element rounding — buttons, inputs, avatars. Fully square: geometric crispness for the most-visible interactive surfaces. Matches the brand mark's true-square geometry.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-rounded-base"
@@ -1477,8 +1588,8 @@
         },
         "corner": {
           "$type": "dimension",
-          "$value": "8px",
-          "$description": "Standard container rounding.",
+          "$value": "4px",
+          "$description": "Container rounding — LANDMARK/SECTION/BLOCK frames, cards. Subtle softening (4px) for content containers while controls (base) stay fully square. The DF radius story in one sentence: controls square, containers softened.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-rounded-corner"
@@ -1487,8 +1598,8 @@
         },
         "field": {
           "$type": "dimension",
-          "$value": "20px",
-          "$description": "Form input rounding.",
+          "$value": "4px",
+          "$description": "Form-input rounding — text fields, selects, textareas. Matches container rounding (.corner) at 4px. The whole framework now reads as 'one subtle softening pass' across all non-control surfaces.",
           "$extensions": {
             "prism": {
               "df-source": "--qs-rounded-field"
@@ -1977,6 +2088,6 @@
     ],
     "generatedBy": "df-prism/tools/emit-tokens-studio.mjs",
     "generatedFrom": "prism-designframe",
-    "generatedAt": "2026-05-18"
+    "generatedAt": "2026-05-22"
   }
 }

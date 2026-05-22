@@ -488,7 +488,7 @@ Tokens with DF-specific semantics. These extend DTCG with DF's structural identi
 |---|---|---|
 | `color.brand.*` | Brand-owned palette (key, primary, secondary, tertiary, invert, disabled, background) | `--qs-color-*` |
 | `color.brand-alt.*` | Alt-palette equivalents | `--qs-color-*-alt` |
-| `color.alert.{notify,warning,error,success}.{bg,fg}` | Alert color pairs | `--color-alert-*` |
+| `color.alert.{notify,warning,error,success}.{base,heading,text,background}` | 4-surface alert palettes (saturated identity + soft container + heading + body text) | `--color-alert-*`, `--color-alert-*-heading`, `--color-alert-*-text`, `--color-alert-*-background` |
 | `color.theme.{default,alt,invert,key,key-gradient,...}.{bg,fg}` | Semantic theme contexts | df-rules.md §10 |
 | `color.theme.{header,footer}.{bg,fg,nav-link}` | Landmark theme contexts | `--qs-color-header-*` |
 | `space.{unit,gutter,shoulder,section,article,element,sub,stack,form,hgroup}` | Semantic spacing contexts | `--spacing-*`, `--pad-*`, `--gap-*` |
@@ -520,9 +520,12 @@ $df-cascade-layer: brand-setter      # One of: brand-setter, runtime, theme-scop
 
 ### 11.3 fg/bg pairing rule (DF-inherited)
 
-Every token at the semantic tier whose path ends in `.bg` MUST have a paired token at the same path ending in `.fg`. Validator enforces; this is DF's contrast-ratio + accessibility convention encoded in the format.
+Every token under `color.theme.*` whose path ends in `.bg` MUST have a paired token at the same path ending in `.fg`. Validator (lint Rule 8 `fg-bg-paired`) enforces this on the semantic theme tier specifically — it is DF's contrast-ratio + accessibility convention for theme-context role pairs.
 
-Exception: transparent backgrounds (where `$value: "transparent"` or the bg is paired with a parent context's bg). These declare `$contrastTarget: "decorative"` to suppress contrast-ratio validation per §12.
+**Exemptions:**
+
+1. **Transparent backgrounds** — where `$value: "transparent"` or the bg is paired with a parent context's bg. These declare `$contrastTarget: "decorative"` to suppress contrast-ratio validation per §12.
+2. **Alert tier** — `color.alert.*` is **not** a `{bg, fg}` role-pair tier; it is a 4-surface palette (`base`, `heading`, `text`, `background`) per §11.1. Alerts model a richer semantic surface than a theme context: a saturated identity color (for dots, badges, focus rings), a soft container background, and two text variants (heading + body) calibrated for WCAG AA against the container. The 4-surface model mirrors the runtime composition (`df-input.css` `--color-alert-*` variable family at the source) and is intentionally analogous to how `color.brand.*` uses functional names (`key`, `primary`, `secondary`, …) for similarly-rich families. Rule 8 walks `color.theme.*` only and does not touch the alert tier.
 
 ### 11.4 Component composition
 
@@ -730,7 +733,7 @@ PRISM.md validation runs alongside DTCG bundle validation (lint rules in `lint-r
 | 5 | `ref-resolvable` | error | Every `$ref` resolves to a defined token |
 | 6 | `prose-ref-resolvable` | warning | Every `[token.path]` in prose resolves to a defined token or section |
 | 7 | `brand-or-system-owned` | error | Every token has exactly one of `$brand-owned: true` or `$system-owned: true` (after defaults from frontmatter roots) |
-| 8 | `fg-bg-paired` | error | Every `color.*.bg` has a paired `color.*.fg` (except `$contrastTarget: "decorative"`) |
+| 8 | `fg-bg-paired` | error | Every `color.theme.*.bg` has a paired `color.theme.*.fg` (except `$contrastTarget: "decorative"`). Walks the semantic theme tier only; the alert tier is a 4-surface family per §11.3 exemption 2 and is not in scope. |
 | 9 | `section-order` | warning | H2 sections appear in canonical order per §7 |
 | 10 | `mode-declared` | error | Tokens with `$mode: X` appear in a mode declared in frontmatter §6.4 |
 | 11 | `mode-undefined` | error | Every mode in frontmatter `modes[]` (except aliases) has an inline `## Modes` definition OR a sibling `PRISM.<mode>.md` file. Exactly one mode has `base: true`. |
@@ -1091,3 +1094,4 @@ Assets emit differently per consumer target:
 | 2026-05-16 | S2 | Draft 1 created. 5 design decisions locked (canonical authoring surface, byte-similar round-trip, DESIGN.md strict superset, hybrid syntax, PRISM.md + project variant naming). |
 | 2026-05-17 | S54+1 (Checkpoint #4) | §15 Rule 4 `token-path-unique` clarified to per-(path, $mode) bucket semantics. Original wording was ambiguous between narrow (path-only) and broad (per-mode) readings; broad reading is the implementation contract. T5 calibration. |
 | 2026-05-17 | S54+2 (Asset feature) | §19 Asset Blocks added — new section type for brand asset declarations (logo / mark / favicon) with `$path`, `$applied-guidance`, `$clear-space`/`$min-size` $ref to tokens, and `$variants`. §7 Section Taxonomy updated with `## Assets` at canonical position #8 (between Components and Modes); subsequent rows renumbered. §15 Validation Rules extended with rules 15-17 (asset-path-exists / asset-clear-space-token-resolvable / asset-type-valid). Format stays `prism-spec/1.0` — purely additive. |
+| 2026-05-22 | Alert 4-surface | `color.alert.*` flipped from 2-surface `{bg, fg}` role pair to 4-surface `{base, heading, text, background}` palette to match runtime composition (`df-input.css` `--color-alert-*` family at runtime source). §11.1 namespace row updated; §11.3 pairing rule clarified to walk `color.theme.*` only with explicit alert exemption added; §15 Rule 8 `fg-bg-paired` doc tightened to match implementation. Format stays `prism-spec/1.0` — alert reshape is a value-tier change, not a grammar change. Schema-breaking for any pre-Phase-B consumer of `color.alert.{name}.{bg,fg}`; no such consumers exist yet (Phase A shipped 2026-05-19; npm publish gated on Phase B). |

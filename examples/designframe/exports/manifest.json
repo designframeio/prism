@@ -117,7 +117,7 @@
   },
   "status": {
     "phase": "parsed",
-    "asOf": "2026-05-18",
+    "asOf": "2026-05-22",
     "note": "Emitted by `prism parse` from PRISM.md."
   }
 }

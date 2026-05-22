@@ -25,35 +25,44 @@
  */
 
 :root {
-  --qs-color-key: 251 3 185; /* #fb03b9 */
-  --qs-color-key-end: 56 131 255; /* #3883ff */
+  --qs-color-key: 34 34 34; /* #222222 */
+  --qs-color-key-end: 34 34 34; /* #222222 */
   --qs-color-primary: 12 12 12; /* #0c0c0c */
-  --qs-color-secondary: 136 136 136; /* #888888 */
+  --qs-color-secondary: 117 117 117; /* #757575 */
   --qs-color-tertiary: 204 204 204; /* #cccccc */
   --qs-color-invert: 255 255 255; /* #ffffff */
   --qs-color-disabled: 204 204 204; /* #cccccc */
   --qs-color-background: 255 255 255; /* #ffffff */
-  --qs-color-background-start: 255 230 248; /* #ffe6f8 */
-  --qs-color-background-end: 235 243 255; /* #ebf3ff */
+  --qs-color-background-start: 221 221 221; /* #dddddd */
+  --qs-color-background-end: 255 255 255; /* #ffffff */
   --qs-color-background-direction: right top;
-  --qs-color-key-alt: 250 0 2; /* #fa0002 */
-  --qs-color-key-end-alt: 250 160 2; /* #faa002 */
+  --qs-color-key-alt: 0 0 0; /* #000000 */
+  --qs-color-key-end-alt: 34 34 34; /* #222222 */
   --qs-color-primary-alt: 12 12 12; /* #0c0c0c */
-  --qs-color-secondary-alt: 136 136 136; /* #888888 */
+  --qs-color-secondary-alt: 117 117 117; /* #757575 */
   --qs-color-tertiary-alt: 204 204 204; /* #cccccc */
   --qs-color-invert-alt: 255 255 255; /* #ffffff */
   --qs-color-disabled-alt: 204 204 204; /* #cccccc */
   --qs-color-background-alt: 255 255 255; /* #ffffff */
-  --qs-color-background-start-alt: 255 159 28; /* #ff9f1c */
-  --qs-color-background-end-alt: 255 209 102; /* #ffd166 */
-  --color-alert-notify-background: 56 131 255; /* #3883ff */
-  --color-alert-notify-fg: 255 255 255; /* #ffffff */
-  --color-alert-warning-background: 250 160 2; /* #faa002 */
-  --color-alert-warning-fg: 12 12 12; /* #0c0c0c */
-  --color-alert-error-background: 250 0 2; /* #fa0002 */
-  --color-alert-error-fg: 255 255 255; /* #ffffff */
-  --color-alert-success-background: 34 197 94; /* #22c55e */
-  --color-alert-success-fg: 255 255 255; /* #ffffff */
+  --qs-color-background-start-alt: 204 204 204; /* #cccccc */
+  --qs-color-background-end-alt: 255 255 255; /* #ffffff */
+  --qs-color-background-alt-direction: right top;
+  --color-alert-notify: 96 165 250; /* #60a5fa */
+  --color-alert-notify-heading: 29 78 216; /* #1d4ed8 */
+  --color-alert-notify-text: 37 99 235; /* #2563eb */
+  --color-alert-notify-background: 219 234 254; /* #dbeafe */
+  --color-alert-warning: 250 204 21; /* #facc15 */
+  --color-alert-warning-heading: 161 98 7; /* #a16207 */
+  --color-alert-warning-text: 202 138 4; /* #ca8a04 */
+  --color-alert-warning-background: 254 249 195; /* #fef9c3 */
+  --color-alert-error: 248 113 113; /* #f87171 */
+  --color-alert-error-heading: 185 28 28; /* #b91c1c */
+  --color-alert-error-text: 220 38 38; /* #dc2626 */
+  --color-alert-error-background: 254 226 226; /* #fee2e2 */
+  --color-alert-success: 74 222 128; /* #4ade80 */
+  --color-alert-success-heading: 21 128 61; /* #15803d */
+  --color-alert-success-text: 22 163 74; /* #16a34a */
+  --color-alert-success-background: 220 252 231; /* #dcfce7 */
   --color-theme-default-transparent-bg: transparent;
   --color-theme-alt-transparent-bg: transparent;
   --color-theme-invert-transparent-bg: transparent;
@@ -136,9 +145,9 @@
   --element-compact-size: 32px;
   --element-base-size: 40px;
   --qs-rounded-min: 4px;
-  --qs-rounded-base: 8px;
-  --qs-rounded-corner: 8px;
-  --qs-rounded-field: 20px;
+  --qs-rounded-base: 0px;
+  --qs-rounded-corner: 4px;
+  --qs-rounded-field: 4px;
   --rounded-full: 9999px;
   --rounded-article-base: 16px;
   --rounded-article-xl: 24px;
@@ -626,7 +635,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
   <article class="asset-card">
     <header class="asset-head">
       <code class="asset-path">logo.primary</code>
-      <p class="asset-description">Primary Designframe wordmark — lowercase, two-stop gradient (key → key-end), right-top direction.</p>
+      <p class="asset-description">Primary Designframe wordmark — &quot;DESIGNFRAME&quot; in solid</p>
     </header>
     <div class="asset-preview asset-preview--primary">
       <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
@@ -646,13 +655,13 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <dt>Min-size</dt><dd><code>size.element.base</code></dd>
       <dt>$path</dt><dd><code>assets/logos/df-wordmark.svg</code></dd>
     </dl>
-    <p class="asset-guidance">Default lockup for light surfaces. Maintain clear-space equal to space.gutter.base on all sides. Minimum size 24px height for legibility (the gradient anti-aliases poorly below that). Don't recolor — the gradient IS the brand. Don't outline, drop-shadow, or apply effects. Don't stretch non-uniformly. For dark surfaces, switch to logo.primary's on-dark variant; for solo-color contexts where the gradient washes out, use logo.mark. </p>
+    <p class="asset-guidance">Default lockup for light surfaces. Maintain clear-space equal to space.gutter.base on all sides. Minimum height 24px for legibility. Don't recolor — the wordmark is intentionally monochromatic; color treatments dilute the identity. Don't outline, drop-shadow, or apply effects. Don't stretch non-uniformly. For dark surfaces, switch to the on-dark variant (white letterforms, same geometry). </p>
   </article>
 
   <article class="asset-card">
     <header class="asset-head">
       <code class="asset-path">logo.mark</code>
-      <p class="asset-description">Designframe mark — rounded-square geometry, two-stop gradient fill, inset &quot;df&quot; monogram in invert.</p>
+      <p class="asset-description">Designframe mark — three solid circles of decreasing size, aligned on the horizontal centerline of a 1024×1024 square canvas. The default variant places white circles on a</p>
     </header>
     <div class="asset-preview asset-preview--primary">
       <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
@@ -678,13 +687,13 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <dt>Min-size</dt><dd><code>size.element.compact</code></dd>
       <dt>$path</dt><dd><code>assets/logos/df-mark.svg</code></dd>
     </dl>
-    <p class="asset-guidance">Use when wordmark length is constrained (app tile, social avatar, square thumbnail, top-nav lockup). Mark inherits radius.brand.corner (8px); don't override the corner radius — it's a deliberate brand identity choice. Default mark uses gradient bg + white &quot;df&quot;; the on-dark variant inverts to white bg + gradient &quot;df&quot; for placement on dark surfaces where the gradient mark loses visual weight. Minimum size 32px square; below that the &quot;df&quot; letterforms lose legibility — use the favicon variant instead. </p>
+    <p class="asset-guidance">Use when wordmark length is constrained (app tile, social avatar, square thumbnail, top-nav lockup). The mark canvas is a true square — don't apply corner radius; the flat geometry is a deliberate identity choice (the brand-mark squareness is asset-side, independent of radius.brand.corner which applies to containers). Default variant: white circles on #222222 canvas. On-dark variant: #222222 circles on white canvas (use against dark surfaces). Minimum size 32px square — below that the three-circle scale hierarchy becomes visually indistinct; use logo.favicon instead. </p>
   </article>
 
   <article class="asset-card">
     <header class="asset-head">
       <code class="asset-path">logo.favicon</code>
-      <p class="asset-description">Designframe favicon — single-letter &quot;d&quot; mark scaled for 16-32px browser-tab and PWA-icon contexts.</p>
+      <p class="asset-description">Designframe favicon — the three-circle mark inscribed in a full-bleed white circle. Geometrically the same motif as logo.mark but bounded by a circular outline rather than the square canvas, sized for 16-32px browser-tab and PWA-icon contexts where a circular mask is common.</p>
     </header>
     <div class="asset-preview asset-preview--primary">
       <svg viewBox="0 0 64 64" role="img" aria-label="Missing asset"><rect width="64" height="64" fill="#eee"/><text x="32" y="36" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#999">404</text></svg>
@@ -695,7 +704,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <dt>Min-size</dt><dd><code>size.element.sub</code></dd>
       <dt>$path</dt><dd><code>assets/logos/favicon.svg</code></dd>
     </dl>
-    <p class="asset-guidance">Reserved for contexts where the full &quot;df&quot; monogram becomes unreadable (browser tabs at 16px, OS app dock at 32px, system notification badges). The single-letter &quot;d&quot; is a legibility-driven simplification, not a design preference — at any size where logo.mark renders legibly, prefer logo.mark. </p>
+    <p class="asset-guidance">Reserved for contexts where the square logo.mark canvas doesn't fit a target surface's icon mask (browser tabs, OS app dock, system notification badges that crop to a circular mask). At any size where logo.mark renders cleanly within its container, prefer logo.mark — the favicon is a mask-shape adaptation, not a scale-down alternative. </p>
   </article>
   </div>
 </section>
@@ -762,19 +771,19 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
   <div class="swatch-grid">
     
     <article class="swatch">
-      <div class="swatch-color" style="background: #fb03b9;"></div>
+      <div class="swatch-color" style="background: #222222;"></div>
       <div class="swatch-meta">
         <code class="swatch-path">color.brand.key</code>
         <code class="swatch-var">--qs-color-key</code>
-        <code class="swatch-hex">#fb03b9</code>
+        <code class="swatch-hex">#222222</code>
       </div>
     </article>
     <article class="swatch">
-      <div class="swatch-color" style="background: #3883ff;"></div>
+      <div class="swatch-color" style="background: #222222;"></div>
       <div class="swatch-meta">
         <code class="swatch-path">color.brand.key-end</code>
         <code class="swatch-var">--qs-color-key-end</code>
-        <code class="swatch-hex">#3883ff</code>
+        <code class="swatch-hex">#222222</code>
       </div>
     </article>
     <article class="swatch">
@@ -786,11 +795,11 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       </div>
     </article>
     <article class="swatch">
-      <div class="swatch-color" style="background: #888888;"></div>
+      <div class="swatch-color" style="background: #757575;"></div>
       <div class="swatch-meta">
         <code class="swatch-path">color.brand.secondary</code>
         <code class="swatch-var">--qs-color-secondary</code>
-        <code class="swatch-hex">#888888</code>
+        <code class="swatch-hex">#757575</code>
       </div>
     </article>
     <article class="swatch">
@@ -826,19 +835,19 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       </div>
     </article>
     <article class="swatch">
-      <div class="swatch-color" style="background: #ffe6f8;"></div>
+      <div class="swatch-color" style="background: #dddddd;"></div>
       <div class="swatch-meta">
         <code class="swatch-path">color.brand.background-start</code>
         <code class="swatch-var">--qs-color-background-start</code>
-        <code class="swatch-hex">#ffe6f8</code>
+        <code class="swatch-hex">#dddddd</code>
       </div>
     </article>
     <article class="swatch">
-      <div class="swatch-color" style="background: #ebf3ff;"></div>
+      <div class="swatch-color" style="background: #ffffff;"></div>
       <div class="swatch-meta">
         <code class="swatch-path">color.brand.background-end</code>
         <code class="swatch-var">--qs-color-background-end</code>
-        <code class="swatch-hex">#ebf3ff</code>
+        <code class="swatch-hex">#ffffff</code>
       </div>
     </article>
   </div>
@@ -882,7 +891,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
     </article>
     <article class="theme-card">
       <header class="theme-card-head"><code>color.theme.key</code></header>
-      <div class="theme-card-demo" style="background: #fb03b9; color: #ffffff;">
+      <div class="theme-card-demo" style="background: #222222; color: #ffffff;">
         <p class="theme-demo-sample">The quick brown fox</p>
         <p class="theme-demo-small">key context</p>
       </div>
@@ -893,7 +902,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
     </article>
     <article class="theme-card">
       <header class="theme-card-head"><code>color.theme.key-gradient</code></header>
-      <div class="theme-card-demo" style="background: #fb03b9; color: #ffffff;">
+      <div class="theme-card-demo" style="background: #222222; color: #ffffff;">
         <p class="theme-demo-sample">The quick brown fox</p>
         <p class="theme-demo-small">key-gradient context</p>
       </div>
@@ -930,21 +939,21 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
   <p class="subsection-lede">Status-signaling colors. Use the <code>.notify</code> / <code>.warning</code> / <code>.error</code> / <code>.success</code> vocabulary; don't mix with the lifecycle vocabulary (see <a href="#patterns">Patterns</a>).</p>
   <div class="alert-grid">
     
-    <article class="alert-card" style="background: #3883ff; color: #ffffff;">
-      <code>alert.notify</code>
-      <p>The quick brown fox</p>
+    <article class="alert-card" style="background: #dbeafe; color: #1d4ed8; border-left: 4px solid #60a5fa;">
+      <code style="color: #1d4ed8;">alert.notify</code>
+      <p style="color: #2563eb;">The quick brown fox jumps over the lazy dog.</p>
     </article>
-    <article class="alert-card" style="background: #faa002; color: #0c0c0c;">
-      <code>alert.warning</code>
-      <p>The quick brown fox</p>
+    <article class="alert-card" style="background: #fef9c3; color: #a16207; border-left: 4px solid #facc15;">
+      <code style="color: #a16207;">alert.warning</code>
+      <p style="color: #ca8a04;">The quick brown fox jumps over the lazy dog.</p>
     </article>
-    <article class="alert-card" style="background: #fa0002; color: #ffffff;">
-      <code>alert.error</code>
-      <p>The quick brown fox</p>
+    <article class="alert-card" style="background: #fee2e2; color: #b91c1c; border-left: 4px solid #f87171;">
+      <code style="color: #b91c1c;">alert.error</code>
+      <p style="color: #dc2626;">The quick brown fox jumps over the lazy dog.</p>
     </article>
-    <article class="alert-card" style="background: #22c55e; color: #ffffff;">
-      <code>alert.success</code>
-      <p>The quick brown fox</p>
+    <article class="alert-card" style="background: #dcfce7; color: #15803d; border-left: 4px solid #4ade80;">
+      <code style="color: #15803d;">alert.success</code>
+      <p style="color: #16a34a;">The quick brown fox jumps over the lazy dog.</p>
     </article>
   </div>
 
@@ -1135,17 +1144,17 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <code>radius.brand.min</code>
       <p>4px</p>
     </article>
-    <article class="radius-demo" style="border-radius: 8px;">
+    <article class="radius-demo" style="border-radius: 0px;">
       <code>radius.brand.base</code>
-      <p>8px</p>
+      <p>0px</p>
     </article>
-    <article class="radius-demo" style="border-radius: 8px;">
+    <article class="radius-demo" style="border-radius: 4px;">
       <code>radius.brand.corner</code>
-      <p>8px</p>
+      <p>4px</p>
     </article>
-    <article class="radius-demo" style="border-radius: 20px;">
+    <article class="radius-demo" style="border-radius: 4px;">
       <code>radius.brand.field</code>
-      <p>20px</p>
+      <p>4px</p>
     </article>
   </div>
 
@@ -1253,7 +1262,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-key));"></div>
       <div class="atlas-swatch-meta">
         <code>brand.key</code>
-        <small>#fb03b9</small>
+        <small>#222222</small>
       </div>
     </div>
 
@@ -1261,7 +1270,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-key-end));"></div>
       <div class="atlas-swatch-meta">
         <code>brand.key-end</code>
-        <small>#3883ff</small>
+        <small>#222222</small>
       </div>
     </div>
 
@@ -1277,7 +1286,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-secondary));"></div>
       <div class="atlas-swatch-meta">
         <code>brand.secondary</code>
-        <small>#888888</small>
+        <small>#757575</small>
       </div>
     </div>
 
@@ -1317,7 +1326,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-background-start));"></div>
       <div class="atlas-swatch-meta">
         <code>brand.background-start</code>
-        <small>#ffe6f8</small>
+        <small>#dddddd</small>
       </div>
     </div>
 
@@ -1325,7 +1334,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-background-end));"></div>
       <div class="atlas-swatch-meta">
         <code>brand.background-end</code>
-        <small>#ebf3ff</small>
+        <small>#ffffff</small>
       </div>
     </div>
 </div>
@@ -1335,7 +1344,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-key-alt));"></div>
       <div class="atlas-swatch-meta">
         <code>brand-alt.key</code>
-        <small>#fa0002</small>
+        <small>#000000</small>
       </div>
     </div>
 
@@ -1343,7 +1352,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-key-end-alt));"></div>
       <div class="atlas-swatch-meta">
         <code>brand-alt.key-end</code>
-        <small>#faa002</small>
+        <small>#222222</small>
       </div>
     </div>
 
@@ -1359,7 +1368,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-secondary-alt));"></div>
       <div class="atlas-swatch-meta">
         <code>brand-alt.secondary</code>
-        <small>#888888</small>
+        <small>#757575</small>
       </div>
     </div>
 
@@ -1399,7 +1408,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-background-start-alt));"></div>
       <div class="atlas-swatch-meta">
         <code>brand-alt.background-start</code>
-        <small>#ff9f1c</small>
+        <small>#cccccc</small>
       </div>
     </div>
 
@@ -1407,7 +1416,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
       <div class="atlas-swatch-color" style="background: rgb(var(--qs-color-background-end-alt));"></div>
       <div class="atlas-swatch-meta">
         <code>brand-alt.background-end</code>
-        <small>#ffd166</small>
+        <small>#ffffff</small>
       </div>
     </div>
 </div>
@@ -1416,66 +1425,130 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
   <div class="atlas-grid">
 
     <div class="atlas-swatch">
-      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify-background));"></div>
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.notify.bg</code>
-        <small>#3883ff</small>
+        <code>alert.notify.base</code>
+        <small>#60a5fa</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
-      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify-fg));"></div>
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify-heading));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.notify.fg</code>
-        <small>#ffffff</small>
+        <code>alert.notify.heading</code>
+        <small>#1d4ed8</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify-text));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.notify.text</code>
+        <small>#2563eb</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-notify-background));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.notify.background</code>
+        <small>#dbeafe</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-warning));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.warning.base</code>
+        <small>#facc15</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-warning-heading));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.warning.heading</code>
+        <small>#a16207</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-warning-text));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.warning.text</code>
+        <small>#ca8a04</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
       <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-warning-background));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.warning.bg</code>
-        <small>#faa002</small>
+        <code>alert.warning.background</code>
+        <small>#fef9c3</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
-      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-warning-fg));"></div>
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-error));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.warning.fg</code>
-        <small>#0c0c0c</small>
+        <code>alert.error.base</code>
+        <small>#f87171</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-error-heading));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.error.heading</code>
+        <small>#b91c1c</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-error-text));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.error.text</code>
+        <small>#dc2626</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
       <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-error-background));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.error.bg</code>
-        <small>#fa0002</small>
+        <code>alert.error.background</code>
+        <small>#fee2e2</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
-      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-error-fg));"></div>
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-success));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.error.fg</code>
-        <small>#ffffff</small>
+        <code>alert.success.base</code>
+        <small>#4ade80</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-success-heading));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.success.heading</code>
+        <small>#15803d</small>
+      </div>
+    </div>
+
+    <div class="atlas-swatch">
+      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-success-text));"></div>
+      <div class="atlas-swatch-meta">
+        <code>alert.success.text</code>
+        <small>#16a34a</small>
       </div>
     </div>
 
     <div class="atlas-swatch">
       <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-success-background));"></div>
       <div class="atlas-swatch-meta">
-        <code>alert.success.bg</code>
-        <small>#22c55e</small>
-      </div>
-    </div>
-
-    <div class="atlas-swatch">
-      <div class="atlas-swatch-color" style="background: rgb(var(--color-alert-success-fg));"></div>
-      <div class="atlas-swatch-meta">
-        <code>alert.success.fg</code>
-        <small>#ffffff</small>
+        <code>alert.success.background</code>
+        <small>#dcfce7</small>
       </div>
     </div>
 </div>
@@ -1699,9 +1772,9 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-si
   <h3 class="atlas-h3">Border radius</h3>
   <div class="atlas-radius-grid">
 <div class="atlas-radius-demo" style="border-radius: 4px;"><code>radius.brand.min</code><small>4px</small></div>
-<div class="atlas-radius-demo" style="border-radius: 8px;"><code>radius.brand.base</code><small>8px</small></div>
-<div class="atlas-radius-demo" style="border-radius: 8px;"><code>radius.brand.corner</code><small>8px</small></div>
-<div class="atlas-radius-demo" style="border-radius: 20px;"><code>radius.brand.field</code><small>20px</small></div>
+<div class="atlas-radius-demo" style="border-radius: 0px;"><code>radius.brand.base</code><small>0px</small></div>
+<div class="atlas-radius-demo" style="border-radius: 4px;"><code>radius.brand.corner</code><small>4px</small></div>
+<div class="atlas-radius-demo" style="border-radius: 4px;"><code>radius.brand.field</code><small>4px</small></div>
 <div class="atlas-radius-demo" style="border-radius: 9999px;"><code>radius.full</code><small>9999px</small></div>
 <div class="atlas-radius-demo" style="border-radius: 16px;"><code>radius.article.base</code><small>16px</small></div>
 </div>

@@ -31,7 +31,7 @@ Three palettes coexist in Designframe: **brand** (main identity), **brand-alt** 
 
 ### Brand palette
 
-The brand identity is a **two-stop gradient** — `color.brand.key` (pink) to `color.brand.key-end` (blue) — carrying through buttons, callouts, link hovers, and key-themed sections. Solo applications of either stop are rare; the gradient is the visual signature.
+The brand identity is **a two-color monochrome system** — `color.brand.key` and `color.brand.key-end` both resolve to `#222222` (the brand-dark), and `color.brand.invert` is pure white. The `key`/`key-end` token pair is preserved for DF token-surface compatibility; in the default theme they share a value (degenerate gradient — effectively flat brand-dark). The `mode:key` overlay then activates this brand-dark as a saturated canvas, and the `color.brand-alt.key` / `color.brand-alt.key-end` pair (`#000000` → `#222222`) provides the actual gradient experience when `mode:alt` is active.
 
 ### Theme contexts
 
@@ -46,6 +46,8 @@ Landmark contexts (header + footer) have brand-owned color slots distinct from m
 ### Alert colors
 
 System-owned colors for status-signaling. Per df-rules.md §10.7, alert tokens are namespaced (`bg-alert-notify`, NOT `bg-notify`) to prevent collision with semantic vocabulary.
+
+Each alert level carries **four surfaces** — `base` (saturated identity color), `heading` (dark heading text), `text` (body text), `background` (soft-tint container). This 4-surface model matches the DF runtime composition (`df-input.css:3169-3245`): an `.alert.{level}` container uses `background` + `heading` together, while `.dot.{level}` / `.badge.{level}` indicators use `base` for the saturated fill. Modeling 4 surfaces (vs collapsing to a `{bg, fg}` pair) lets consumers reproduce both alert containers *and* the indicator family without inventing intermediate values.
 
 ### Shader system
 
@@ -159,17 +161,17 @@ A `.badge` uses alert vocab. A `.status-dot` uses lifecycle vocab. Mixing create
 
 Brand assets ship alongside the token system — logo lockups, marks, and favicons that consumers reference in product chrome, marketing surfaces, and platform integrations (favicon, PWA, OG image). Assets are file references with usage rules; tokens are visual property values. Per spec §19 each asset block declares `$path` (project-relative), `$applied-guidance` (clear-space + min-size + do/don't), and optional `$variants` for alternate treatments (on-dark, mark, etc.).
 
-The Designframe identity is **a two-stop gradient wordmark** (pink `color.brand.key` → blue `color.brand.key-end`, right-top direction). Solo-color treatments exist for surfaces where the gradient lacks contrast or where simplification serves the platform (favicon, single-color print). Solo-color is the fallback, not the headline — default to the gradient lockup.
+The Designframe identity is **a two-color monochrome system**: brand-dark `#222222` and pure white `#FFFFFF`. The mark is a *structural diagram* of Designframe's architecture — three circles in √2 ratios encoding the three control tiers (**LANDMARK** / **SECTION** / **BLOCK**) where Designframe applies its theming and adaptive sizing via CSS cascade. The wordmark is "DESIGNFRAME" set in geometric uppercase, drawn in solid `#222222`. There is no gradient lockup — the brand is intentionally monochromatic; on-dark variants invert the fill rather than introducing color.
 
 ### Logo
 
 ### Do's and Don'ts (asset-specific)
 
-- **Do** use the gradient wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
-- **Do** swap to the on-dark variant when bg darker than `color.theme.invert.bg` is the surface — the gradient on near-black lacks the contrast the gradient on white achieves.
-- **Don't** recolor any asset variant. Brand owners forking Designframe replace primitives in PRISM.md frontmatter (`color.brand.key`, `color.brand.key-end`) — the asset SVGs re-render automatically once those primitives change. Hand-edit recoloring fights the cascade.
-- **Don't** apply effects (drop shadow, glow, outline, emboss) to brand assets — DF's identity is the gradient + the geometry, not chrome treatments. If the asset needs visual weight, increase its size; don't decorate it.
-- **Don't** use logo.favicon outside its 16-32px size band — it's a single-letter mark designed to remain readable at icon scale, and it looks anemic at larger sizes where the full mark or wordmark belongs.
+- **Do** use the wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
+- **Do** swap to the on-dark variants when surface bg is darker than `color.theme.invert.bg` (e.g., in mode:dark or mode:key contexts) — the fill inverts from #222222 to white while geometry stays identical.
+- **Don't** recolor any asset variant. The Designframe identity is intentionally monochromatic — `#222222` + white is the entire brand palette. If you fork this kit to define your own brand, replace the SVGs with your own marks; the brand-tier color tokens (`color.brand.key`, `color.brand.key-end`, etc.) are utility colors retained for DF token-surface compatibility, not the brand identity itself.
+- **Don't** apply effects (drop shadow, glow, outline, emboss). Designframe's identity is the geometry — three circles in √2 ratio encoding the LANDMARK/SECTION/BLOCK cascade, the wordmark's uppercase proportions — not chrome treatments. If the asset needs visual weight, increase its size; don't decorate it.
+- **Don't** use logo.favicon outside its 16-32px size band — at larger sizes the circular outline reads as decorative rather than functional. Use logo.mark for any non-icon-masked context.
 
 ## Modes
 

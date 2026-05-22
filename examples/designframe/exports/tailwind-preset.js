@@ -16,42 +16,50 @@ module.exports = {
     },
     "extend": {
       "colors": {
-        "key": "#fb03b9",
-        "key-end": "#3883ff",
+        "key": "#222222",
+        "key-end": "#222222",
         "primary": "#0c0c0c",
-        "secondary": "#888888",
+        "secondary": "#757575",
         "tertiary": "#cccccc",
         "invert": "#ffffff",
         "disabled": "#cccccc",
         "background": "#ffffff",
-        "background-start": "#ffe6f8",
-        "background-end": "#ebf3ff",
-        "key-alt": "#fa0002",
-        "key-end-alt": "#faa002",
+        "background-start": "#dddddd",
+        "background-end": "#ffffff",
+        "key-alt": "#000000",
+        "key-end-alt": "#222222",
         "primary-alt": "#0c0c0c",
-        "secondary-alt": "#888888",
+        "secondary-alt": "#757575",
         "tertiary-alt": "#cccccc",
         "invert-alt": "#ffffff",
         "disabled-alt": "#cccccc",
         "background-alt": "#ffffff",
-        "background-start-alt": "#ff9f1c",
-        "background-end-alt": "#ffd166",
+        "background-start-alt": "#cccccc",
+        "background-end-alt": "#ffffff",
         "alert": {
           "notify": {
-            "DEFAULT": "#3883ff",
-            "fg": "#ffffff"
+            "DEFAULT": "#60a5fa",
+            "h": "#1d4ed8",
+            "p": "#2563eb",
+            "bg": "#dbeafe"
           },
           "warning": {
-            "DEFAULT": "#faa002",
-            "fg": "#0c0c0c"
+            "DEFAULT": "#facc15",
+            "h": "#a16207",
+            "p": "#ca8a04",
+            "bg": "#fef9c3"
           },
           "error": {
-            "DEFAULT": "#fa0002",
-            "fg": "#ffffff"
+            "DEFAULT": "#f87171",
+            "h": "#b91c1c",
+            "p": "#dc2626",
+            "bg": "#fee2e2"
           },
           "success": {
-            "DEFAULT": "#22c55e",
-            "fg": "#ffffff"
+            "DEFAULT": "#4ade80",
+            "h": "#15803d",
+            "p": "#16a34a",
+            "bg": "#dcfce7"
           }
         },
         "theme": {
@@ -64,7 +72,7 @@ module.exports = {
             "fg": "#ffffff"
           },
           "key": {
-            "bg": "#fb03b9",
+            "bg": "#222222",
             "fg": "#ffffff"
           },
           "default-transparent": {
@@ -92,35 +100,35 @@ module.exports = {
             "fg": "#ffffff"
           },
           "key-gradient": {
-            "bg": "#fb03b9",
-            "bg-start": "#fb03b9",
-            "bg-end": "#3883ff",
+            "bg": "#222222",
+            "bg-start": "#222222",
+            "bg-end": "#222222",
             "fg": "#ffffff"
           },
           "key-alt": {
-            "bg": "#fa0002",
+            "bg": "#000000",
             "fg": "#ffffff"
           },
           "key-alt-gradient": {
-            "bg": "#fa0002",
-            "bg-start": "#fa0002",
-            "bg-end": "#faa002",
+            "bg": "#000000",
+            "bg-start": "#000000",
+            "bg-end": "#222222",
             "fg": "#ffffff"
           },
           "header": {
             "bg": "#ffffff",
             "fg": "#0c0c0c",
-            "nav-link": "#888888"
+            "nav-link": "#757575"
           },
           "footer": {
             "bg": "#ffffff",
             "fg": "#0c0c0c",
-            "nav-link": "#888888"
+            "nav-link": "#757575"
           }
         },
         "fg": {
           "default": "#0c0c0c",
-          "muted": "#888888",
+          "muted": "#757575",
           "subtle": "#cccccc",
           "on-key": "#ffffff",
           "on-dark": "#ffffff",
@@ -128,9 +136,9 @@ module.exports = {
         },
         "bg": {
           "canvas": "#ffffff",
-          "key": "#fb03b9",
-          "key-start": "#fb03b9",
-          "key-end": "#3883ff",
+          "key": "#222222",
+          "key-start": "#222222",
+          "key-end": "#222222",
           "invert": "#0c0c0c"
         }
       },
@@ -184,9 +192,9 @@ module.exports = {
       },
       "borderRadius": {
         "min": "4px",
-        "base": "8px",
-        "corner": "8px",
-        "field": "20px",
+        "base": "0px",
+        "corner": "4px",
+        "field": "4px",
         "full": "9999px",
         "chip": "4px",
         "article": "16px",

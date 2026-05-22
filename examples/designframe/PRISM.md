@@ -57,43 +57,52 @@ source:
 
 color:
   brand:
-    key: { $type: color, $value: "#fb03b9", $brand-owned: true, $df-source: --qs-color-key, $description: "Brand key color (gradient start)." }
-    key-end: { $type: color, $value: "#3883ff", $brand-owned: true, $df-source: --qs-color-key-end, $description: "Brand key gradient end-stop." }
-    primary: { $type: color, $value: "#0c0c0c", $brand-owned: true, $df-source: --qs-color-primary, $description: "Primary text — darkest monotone." }
-    secondary: { $type: color, $value: "#888888", $brand-owned: true, $df-source: --qs-color-secondary, $description: "Secondary text — mid gray for help text." }
-    tertiary: { $type: color, $value: "#cccccc", $brand-owned: true, $df-source: --qs-color-tertiary, $description: "Tertiary text — light gray, still legible." }
-    invert: { $type: color, $value: "#ffffff", $brand-owned: true, $df-source: --qs-color-invert, $description: "Invert color — white. Used on dark backgrounds." }
-    disabled: { $type: color, $value: "#cccccc", $brand-owned: true, $description: DF disabled state color. Distinct from color.brand.tertiary semantically but may share value., $df-source: --qs-color-disabled }
-    background: { $type: color, $value: "#ffffff", $brand-owned: true, $df-source: --qs-color-background, $description: "Base page background." }
-    background-start: { $type: color, $value: "#ffe6f8", $brand-owned: true, $description: DF gradient background start (optional). Set same as color.brand.background if no gradient bg., $df-source: --qs-color-background-start }
-    background-end: { $type: color, $value: "#ebf3ff", $brand-owned: true, $description: DF gradient background end (optional)., $df-source: --qs-color-background-end }
-    background-direction: { $type: string, $value: "right top", $brand-owned: true, $df-source: --qs-color-background-direction, $description: "CSS gradient direction for background-start → background-end pair." }
+    key: { $type: color, $value: "#222222", $brand-owned: true, $df-source: --qs-color-key, $description: "Brand key — flat brand-dark. Default theme is monochrome; key-end shares this value (degenerate gradient)." }
+    key-end: { $type: color, $value: "#222222", $brand-owned: true, $df-source: --qs-color-key-end, $description: "Brand key gradient end-stop. Matches key in monochrome default theme — no operative gradient." }
+    primary: { $type: color, $value: "#0c0c0c", $brand-owned: true, $df-source: --qs-color-primary, $description: "Primary text on light surfaces. Near-black; slightly darker than brand-identity #222222 to compensate for anti-aliasing weight loss at body-type sizes (the optical-weight discipline — see Color rationale)." }
+    secondary: { $type: color, $value: "#757575", $brand-owned: true, $df-source: --qs-color-secondary, $description: "Secondary text — passes WCAG AA on white (4.61:1). Industry parallel: Material Design medium-emphasis text." }
+    tertiary: { $type: color, $value: "#cccccc", $brand-owned: true, $df-source: --qs-color-tertiary, $description: "Tertiary tier — borders, dividers, low-emphasis chrome. Decorative; not for readable text. Fails WCAG by design — intentional low-attention." }
+    invert: { $type: color, $value: "#ffffff", $brand-owned: true, $df-source: --qs-color-invert, $description: "Inverse foreground — pure white. Used on dark surfaces. Matches brand-asset SVG fill values (the mark's white circles, inverted wordmark)." }
+    disabled: { $type: color, $value: "#cccccc", $brand-owned: true, $description: "Disabled-state UI. Shares value with tertiary by intent — both target low-emphasis visual weight. WCAG carves out 'inactive UI components' from contrast requirements.", $df-source: --qs-color-disabled }
+    background: { $type: color, $value: "#ffffff", $brand-owned: true, $df-source: --qs-color-background, $description: "Default page canvas — pure white. Matches brand-asset reality (mark on-dark variant + favicon outer ring)." }
+    background-start: { $type: color, $value: "#dddddd", $brand-owned: true, $description: "Default-theme gradient bg start (lower-left corner). The lightness-matched inverse of #222222 (L* 14 ↔ L* 86) — atmospheric only, not for text contrast. Brand-math: gradient bridges from brand-dark's optical mirror to pure white.", $df-source: --qs-color-background-start }
+    background-end: { $type: color, $value: "#ffffff", $brand-owned: true, $description: "Default-theme gradient bg end (upper-right corner). Pure white. Gradient flows lower-left → upper-right (lift convention).", $df-source: --qs-color-background-end }
+    background-direction: { $type: string, $value: "right top", $brand-owned: true, $df-source: --qs-color-background-direction, $description: "CSS gradient direction — 'right top' means gradient flows TOWARD upper-right (start at lower-left, end at upper-right)." }
 
   brand-alt:
-    key: { $type: color, $value: "#fa0002", $brand-owned: true, $description: Alt brand key color., $df-source: --qs-color-key-alt }
-    key-end: { $type: color, $value: "#faa002", $brand-owned: true, $description: Alt brand key gradient end., $df-source: --qs-color-key-end-alt }
-    primary: { $type: color, $value: "#0c0c0c", $brand-owned: true, $description: Alt theme primary., $df-source: --qs-color-primary-alt }
-    secondary: { $type: color, $value: "#888888", $brand-owned: true, $description: Alt theme secondary., $df-source: --qs-color-secondary-alt }
-    tertiary: { $type: color, $value: "#cccccc", $brand-owned: true, $description: Alt theme tertiary., $df-source: --qs-color-tertiary-alt }
-    invert: { $type: color, $value: "#ffffff", $brand-owned: true, $description: Alt theme invert., $df-source: --qs-color-invert-alt }
-    disabled: { $type: color, $value: "#cccccc", $brand-owned: true, $description: Alt theme disabled., $df-source: --qs-color-disabled-alt }
-    background: { $type: color, $value: "#ffffff", $brand-owned: true, $description: Alt theme background., $df-source: --qs-color-background-alt }
-    background-start: { $type: color, $value: "#ff9f1c", $brand-owned: true, $description: Alt gradient bg start., $df-source: --qs-color-background-start-alt }
-    background-end: { $type: color, $value: "#ffd166", $brand-owned: true, $description: Alt gradient bg end., $df-source: --qs-color-background-end-alt }
+    key: { $type: color, $value: "#000000", $brand-owned: true, $description: "Alt-theme key (lower-left of alt-key gradient). Absolute black — the most dramatic dark stop in the system. Pairs with key-end (#222222) for the alt-key gradient. Activated in mode:alt.", $df-source: --qs-color-key-alt }
+    key-end: { $type: color, $value: "#222222", $brand-owned: true, $description: "Alt-theme key end (upper-right of alt-key gradient). Brand-dark — the gradient resolves to the brand-canonical rest position.", $df-source: --qs-color-key-end-alt }
+    primary: { $type: color, $value: "#0c0c0c", $brand-owned: true, $description: "Alt-theme primary text. Mirrors default primary — alt-mode keeps the same light canvas + dark-text pattern as default; only key/key-end and background-start/end actually differ.", $df-source: --qs-color-primary-alt }
+    secondary: { $type: color, $value: "#757575", $brand-owned: true, $description: "Alt-theme secondary text. Mirrors default secondary (WCAG AA).", $df-source: --qs-color-secondary-alt }
+    tertiary: { $type: color, $value: "#cccccc", $brand-owned: true, $description: "Alt-theme tertiary. Mirrors default tertiary (decorative tier).", $df-source: --qs-color-tertiary-alt }
+    invert: { $type: color, $value: "#ffffff", $brand-owned: true, $description: "Alt-theme invert. Mirrors default invert (pure white).", $df-source: --qs-color-invert-alt }
+    disabled: { $type: color, $value: "#cccccc", $brand-owned: true, $description: "Alt-theme disabled. Mirrors default disabled.", $df-source: --qs-color-disabled-alt }
+    background: { $type: color, $value: "#ffffff", $brand-owned: true, $description: "Alt-theme page canvas. Mirrors default background — same light canvas; alt theme varies via gradient stops + key colors, not via canvas inversion.", $df-source: --qs-color-background-alt }
+    background-start: { $type: color, $value: "#cccccc", $brand-owned: true, $description: "Alt-theme gradient bg start (lower-left). Brand tertiary — visibly more atmospheric than default-theme gradient (which starts at #DDDDDD). Recognizable 'alt' feel without leaving monochrome.", $df-source: --qs-color-background-start-alt }
+    background-end: { $type: color, $value: "#ffffff", $brand-owned: true, $description: "Alt-theme gradient bg end (upper-right). Pure white — alt and default gradients both resolve to white at upper-right (lift convention shared).", $df-source: --qs-color-background-end-alt }
+    background-direction: { $type: string, $value: "right top", $brand-owned: true, $df-source: --qs-color-background-alt-direction, $description: "Alt-theme gradient direction. Matches default — lift toward upper-right." }
 
   alert:
     notify:
-      bg: { $type: color, $value: "#3883ff", $system-owned: true, $description: Notify alert background. Pairs with alert.notify.fg., $df-source: --color-alert-notify-background }
-      fg: { $type: color, $value: "#ffffff", $system-owned: true, $description: Notify alert foreground. Paired with alert.notify.bg. }
+      base:       { $type: color, $value: "#60a5fa", $system-owned: true, $df-source: --color-alert-notify,            $description: "Notify alert identity color — saturated blue. Use for dots, icons, focus rings, badge fills." }
+      heading:    { $type: color, $value: "#1d4ed8", $system-owned: true, $df-source: --color-alert-notify-heading,    $description: "Notify alert heading text. WCAG AA on alert.notify.background." }
+      text:       { $type: color, $value: "#2563eb", $system-owned: true, $df-source: --color-alert-notify-text,       $description: "Notify alert body text. Slightly lighter than heading; WCAG AA on alert.notify.background." }
+      background: { $type: color, $value: "#dbeafe", $system-owned: true, $df-source: --color-alert-notify-background, $description: "Notify alert container background — soft blue tint. The `.alert.notify` container surface." }
     warning:
-      bg: { $type: color, $value: "#faa002", $system-owned: true, $description: "Warning alert background. Pairs with alert.warning.fg. Note: alert.warning hex placeholder; verify against df-preset.js at full extraction.", $df-source: --color-alert-warning-background }
-      fg: { $type: color, $value: "#0c0c0c", $system-owned: true, $description: Warning alert foreground. Paired with alert.warning.bg. }
+      base:       { $type: color, $value: "#facc15", $system-owned: true, $df-source: --color-alert-warning,            $description: "Warning alert identity color — saturated yellow. Use for dots, icons, focus rings, badge fills." }
+      heading:    { $type: color, $value: "#a16207", $system-owned: true, $df-source: --color-alert-warning-heading,    $description: "Warning alert heading text. Dark amber for WCAG AA on alert.warning.background." }
+      text:       { $type: color, $value: "#ca8a04", $system-owned: true, $df-source: --color-alert-warning-text,       $description: "Warning alert body text. WCAG AA on alert.warning.background." }
+      background: { $type: color, $value: "#fef9c3", $system-owned: true, $df-source: --color-alert-warning-background, $description: "Warning alert container background — soft yellow tint. The `.alert.warning` container surface." }
     error:
-      bg: { $type: color, $value: "#fa0002", $system-owned: true, $df-source: --color-alert-error-background }
-      fg: { $type: color, $value: "#ffffff", $system-owned: true, $description: Error alert foreground. }
+      base:       { $type: color, $value: "#f87171", $system-owned: true, $df-source: --color-alert-error,            $description: "Error alert identity color — saturated red. Use for dots, icons, focus rings, badge fills, destructive-action signaling." }
+      heading:    { $type: color, $value: "#b91c1c", $system-owned: true, $df-source: --color-alert-error-heading,    $description: "Error alert heading text. Dark red for WCAG AA on alert.error.background." }
+      text:       { $type: color, $value: "#dc2626", $system-owned: true, $df-source: --color-alert-error-text,       $description: "Error alert body text. WCAG AA on alert.error.background." }
+      background: { $type: color, $value: "#fee2e2", $system-owned: true, $df-source: --color-alert-error-background, $description: "Error alert container background — soft red tint. The `.alert.error` container surface." }
     success:
-      bg: { $type: color, $value: "#22c55e", $system-owned: true, $description: Success alert background. Pairs with alert.success.fg. Placeholder hex pending df-preset.js extraction., $df-source: --color-alert-success-background }
-      fg: { $type: color, $value: "#ffffff", $system-owned: true, $description: Success alert foreground. }
+      base:       { $type: color, $value: "#4ade80", $system-owned: true, $df-source: --color-alert-success,            $description: "Success alert identity color — saturated green. Use for dots, icons, focus rings, badge fills, pass-state signaling." }
+      heading:    { $type: color, $value: "#15803d", $system-owned: true, $df-source: --color-alert-success-heading,    $description: "Success alert heading text. Dark green for WCAG AA on alert.success.background." }
+      text:       { $type: color, $value: "#16a34a", $system-owned: true, $df-source: --color-alert-success-text,       $description: "Success alert body text. WCAG AA on alert.success.background." }
+      background: { $type: color, $value: "#dcfce7", $system-owned: true, $df-source: --color-alert-success-background, $description: "Success alert container background — soft green tint. The `.alert.success` container surface." }
 
   _aliases:
     primary: { $ref: "{color.brand.key}" }
@@ -192,10 +201,10 @@ size:
 
 radius:
   brand:
-    min: { $type: dimension, $value: "4px", $brand-owned: true, $description: Smallest brand rounding., $df-source: --qs-rounded-min }
-    base: { $type: dimension, $value: "8px", $brand-owned: true, $description: Base element rounding., $df-source: --qs-rounded-base }
-    corner: { $type: dimension, $value: "8px", $brand-owned: true, $description: Standard container rounding., $df-source: --qs-rounded-corner }
-    field: { $type: dimension, $value: "20px", $brand-owned: true, $description: Form input rounding., $df-source: --qs-rounded-field }
+    min: { $type: dimension, $value: "4px", $brand-owned: true, $description: "Subtle softening for small surfaces — chips, badges, .rounded checkboxes, skeleton text rows. The middle tier between fully square (.base 0px) and pill (.full 9999px). Preserves the .rounded checkbox variant as semantically distinct from plain-square.", $df-source: --qs-rounded-min }
+    base: { $type: dimension, $value: "0px", $brand-owned: true, $description: "Base element rounding — buttons, inputs, avatars. Fully square: geometric crispness for the most-visible interactive surfaces. Matches the brand mark's true-square geometry.", $df-source: --qs-rounded-base }
+    corner: { $type: dimension, $value: "4px", $brand-owned: true, $description: "Container rounding — LANDMARK/SECTION/BLOCK frames, cards. Subtle softening (4px) for content containers while controls (base) stay fully square. The DF radius story in one sentence: controls square, containers softened.", $df-source: --qs-rounded-corner }
+    field: { $type: dimension, $value: "4px", $brand-owned: true, $description: "Form-input rounding — text fields, selects, textareas. Matches container rounding (.corner) at 4px. The whole framework now reads as 'one subtle softening pass' across all non-control surfaces.", $df-source: --qs-rounded-field }
   full: { $type: dimension, $value: "9999px", $system-owned: true, $description: Pill/circle radius., $df-source: --rounded-full }
   chip: { $ref: "{radius.brand.min}" }
   article:
@@ -281,30 +290,30 @@ Three palettes coexist in Designframe: **brand** (main identity), **brand-alt** 
 
 ### Brand palette
 
-The brand identity is a **two-stop gradient** — `color.brand.key` (pink) to `color.brand.key-end` (blue) — carrying through buttons, callouts, link hovers, and key-themed sections. Solo applications of either stop are rare; the gradient is the visual signature.
+The brand identity is **a two-color monochrome system** — `color.brand.key` and `color.brand.key-end` both resolve to `#222222` (the brand-dark), and `color.brand.invert` is pure white. The `key`/`key-end` token pair is preserved for DF token-surface compatibility; in the default theme they share a value (degenerate gradient — effectively flat brand-dark). The `mode:key` overlay then activates this brand-dark as a saturated canvas, and the `color.brand-alt.key` / `color.brand-alt.key-end` pair (`#000000` → `#222222`) provides the actual gradient experience when `mode:alt` is active.
 
 ```token
 color.brand.key:
   $type: color
-  $value: "#fb03b9"
+  $value: "#222222"
   $brand-owned: true
   $df-source: --qs-color-key
-  $description: Brand key color — gradient start. Pink, saturated.
+  $description: Brand key — flat brand-dark. Default theme is monochrome; key-end shares this value.
   $applied-guidance: |
-    Use as the brand-identity accent — button-gradient start, key-tinted backgrounds, link-hover via `.text-key`. When key is intended to be a gradient (the default), color.brand.key-end is the paired end-stop. Don't apply key as a solid-fill brand color unless the design specifically calls for it; default to the gradient pair.
+    Use as the brand-identity accent — button-key fills, key-tinted backgrounds, link-hover via `.text-key`. In the default theme, key and key-end share the value #222222, so any "gradient" rendering collapses to a flat brand-dark surface. For an actual gradient brand experience, switch to mode:alt where the alt-key gradient (#000000 → #222222) is operative.
   $ai-hint: |
-    When generating brand-key UI elements, prefer gradient utilities (bg-gradient-key, button.gradient) over solid bg-key + text-key in isolation. The gradient is the brand; solid-key applications can look stylistically off without surrounding gradient context.
+    When generating brand-key UI elements, treat key as a flat color in default theme — gradient utilities like bg-gradient-key resolve to a degenerate (flat) gradient that's visually identical to bg-key. Only in mode:alt does the gradient experience activate; design with that mode-switch in mind if a gradient is the desired brand feel.
 ```
 
 ```token
 color.brand.key-end:
   $type: color
-  $value: "#3883ff"
+  $value: "#222222"
   $brand-owned: true
   $df-source: --qs-color-key-end
-  $description: Brand key gradient end-stop. Blue.
+  $description: Brand key gradient end-stop. Matches key in monochrome default theme (no operative gradient).
   $applied-guidance: |
-    Paired with color.brand.key in every gradient — set them equal for a solid-key brand. Direction is controlled by color.brand.background-direction at theme level (default: right top).
+    Paired with color.brand.key for the default-theme key gradient. Both stops are #222222 in the canonical Designframe brand, producing a flat (degenerate) gradient. Direction is controlled by color.brand.background-direction at theme level (default: right top) but has no visual effect when both stops match. The mode:alt overlay provides the actual gradient experience via color.brand-alt.key (#000000) → color.brand-alt.key-end (#222222).
 ```
 
 ```token
@@ -323,12 +332,12 @@ color.brand.primary:
 ```token
 color.brand.secondary:
   $type: color
-  $value: "#888888"
+  $value: "#757575"
   $brand-owned: true
   $df-source: --qs-color-secondary
-  $description: Secondary text — mid gray for help text.
+  $description: Secondary text — mid-grey passing WCAG AA on white (4.61:1). Industry parallel — Material Design medium-emphasis text.
   $applied-guidance: |
-    Use via `text-secondary` for de-emphasized but still-readable content — help text, captions, metadata, form hints, footer subtext. Carries less attention weight than `text-primary` without dropping below WCAG AA body contrast on white. Inside `.theme.invert` / `.theme.key`, the cascade swaps to an appropriately lighter equivalent. Don't reach for `text-gray-500` or hardcoded grays — those bypass the cascade.
+    Use via `text-secondary` for de-emphasized but still-readable content — help text, captions, metadata, form hints, footer subtext. Carries less attention weight than `text-primary` while remaining body-text accessible (4.61:1 contrast on white, passes WCAG AA normal). Inside `.theme.invert` / `.theme.key`, the cascade swaps to an appropriately lighter equivalent. Don't reach for `text-gray-500` or hardcoded grays — those bypass the cascade and may fail accessibility.
 ```
 
 ```token
@@ -644,14 +653,26 @@ color.theme.footer.nav-link:
 
 System-owned colors for status-signaling. Per df-rules.md §10.7, alert tokens are namespaced (`bg-alert-notify`, NOT `bg-notify`) to prevent collision with semantic vocabulary.
 
+Each alert level carries **four surfaces** — `base` (saturated identity color), `heading` (dark heading text), `text` (body text), `background` (soft-tint container). This 4-surface model matches the DF runtime composition (`df-input.css:3169-3245`): an `.alert.{level}` container uses `background` + `heading` together, while `.dot.{level}` / `.badge.{level}` indicators use `base` for the saturated fill. Modeling 4 surfaces (vs collapsing to a `{bg, fg}` pair) lets consumers reproduce both alert containers *and* the indicator family without inventing intermediate values.
+
 ```token
-color.alert.error.bg:
+color.alert.error.background:
   $type: color
-  $value: "#fa0002"
+  $value: "#fee2e2"
   $system-owned: true
-  $description: Error alert background.
+  $description: Error alert container background — soft red tint.
   $applied-guidance: |
-    Apply to alert containers signaling error state — form validation, destructive-action confirmations, system failures. Paired with color.alert.error.fg (white) for WCAG AA contrast on body text.
+    Apply to alert containers signaling error state — form validation, destructive-action confirmations, system failures. Pair with color.alert.error.heading (#b91c1c) for body-heading text and color.alert.error.text (#dc2626) for paragraph text; both pass WCAG AA against this soft-red surface. Don't apply error.base (#f87171) as a container background — that's the saturated identity color reserved for dots, focus rings, and badge fills, and its WCAG contrast against typical heading text is below AA.
+```
+
+```token
+color.alert.error.base:
+  $type: color
+  $value: "#f87171"
+  $system-owned: true
+  $description: Error alert identity color — saturated red.
+  $applied-guidance: |
+    Apply to status indicators that need attention-level saturation: `.dot.error` indicator dots, `.badge.dot.error` chips, focus rings on form fields in error state, and the left-stripe accent on the alert container. Don't use as a container background (use color.alert.error.background instead) and don't use as body text (use color.alert.error.text instead — it's calibrated for WCAG AA on the soft-tint container).
 ```
 
 ### Shader system
@@ -829,7 +850,7 @@ A `.badge` uses alert vocab. A `.status-dot` uses lifecycle vocab. Mixing create
 
 Brand assets ship alongside the token system — logo lockups, marks, and favicons that consumers reference in product chrome, marketing surfaces, and platform integrations (favicon, PWA, OG image). Assets are file references with usage rules; tokens are visual property values. Per spec §19 each asset block declares `$path` (project-relative), `$applied-guidance` (clear-space + min-size + do/don't), and optional `$variants` for alternate treatments (on-dark, mark, etc.).
 
-The Designframe identity is **a two-stop gradient wordmark** (pink `color.brand.key` → blue `color.brand.key-end`, right-top direction). Solo-color treatments exist for surfaces where the gradient lacks contrast or where simplification serves the platform (favicon, single-color print). Solo-color is the fallback, not the headline — default to the gradient lockup.
+The Designframe identity is **a two-color monochrome system**: brand-dark `#222222` and pure white `#FFFFFF`. The mark is a *structural diagram* of Designframe's architecture — three circles in √2 ratios encoding the three control tiers (**LANDMARK** / **SECTION** / **BLOCK**) where Designframe applies its theming and adaptive sizing via CSS cascade. The wordmark is "DESIGNFRAME" set in geometric uppercase, drawn in solid `#222222`. There is no gradient lockup — the brand is intentionally monochromatic; on-dark variants invert the fill rather than introducing color.
 
 ### Logo
 
@@ -837,9 +858,9 @@ The Designframe identity is **a two-stop gradient wordmark** (pink `color.brand.
 logo.primary:
   $type: image
   $path: assets/logos/df-wordmark.svg
-  $description: Primary Designframe wordmark — lowercase, two-stop gradient (key → key-end), right-top direction.
+  $description: Primary Designframe wordmark — "DESIGNFRAME" in solid #222222, geometric uppercase, 784×72 proportions. Monochrome only; no gradient.
   $applied-guidance: |
-    Default lockup for light surfaces. Maintain clear-space equal to space.gutter.base on all sides. Minimum size 24px height for legibility (the gradient anti-aliases poorly below that). Don't recolor — the gradient IS the brand. Don't outline, drop-shadow, or apply effects. Don't stretch non-uniformly. For dark surfaces, switch to logo.primary's on-dark variant; for solo-color contexts where the gradient washes out, use logo.mark.
+    Default lockup for light surfaces. Maintain clear-space equal to space.gutter.base on all sides. Minimum height 24px for legibility. Don't recolor — the wordmark is intentionally monochromatic; color treatments dilute the identity. Don't outline, drop-shadow, or apply effects. Don't stretch non-uniformly. For dark surfaces, switch to the on-dark variant (white letterforms, same geometry).
   $clear-space:
     $ref: "{space.gutter.base}"
   $min-size:
@@ -852,9 +873,9 @@ logo.primary:
 logo.mark:
   $type: image
   $path: assets/logos/df-mark.svg
-  $description: Designframe mark — rounded-square geometry, two-stop gradient fill, inset "df" monogram in invert.
+  $description: Designframe mark — three solid circles of decreasing size, aligned on the horizontal centerline of a 1024×1024 square canvas. The default variant places white circles on a #222222 canvas; the on-dark variant inverts to #222222 circles on a white canvas. Square geometry — no corner radius. The three circles, sized in √2 ratios, encode Designframe's three control tiers — LANDMARK (the page-level landmarks header/footer/main), SECTION (containers within), and BLOCK (content within sections) — the three points where Designframe applies its theming and adaptive sizing via CSS cascade.
   $applied-guidance: |
-    Use when wordmark length is constrained (app tile, social avatar, square thumbnail, top-nav lockup). Mark inherits radius.brand.corner (8px); don't override the corner radius — it's a deliberate brand identity choice. Default mark uses gradient bg + white "df"; the on-dark variant inverts to white bg + gradient "df" for placement on dark surfaces where the gradient mark loses visual weight. Minimum size 32px square; below that the "df" letterforms lose legibility — use the favicon variant instead.
+    Use when wordmark length is constrained (app tile, social avatar, square thumbnail, top-nav lockup). The mark canvas is a true square — don't apply corner radius; the flat geometry is a deliberate identity choice (the brand-mark squareness is asset-side, independent of radius.brand.corner which applies to containers). Default variant: white circles on #222222 canvas. On-dark variant: #222222 circles on white canvas (use against dark surfaces). Minimum size 32px square — below that the three-circle scale hierarchy becomes visually indistinct; use logo.favicon instead.
   $clear-space:
     $ref: "{space.article.base}"
   $min-size:
@@ -868,20 +889,20 @@ logo.mark:
 logo.favicon:
   $type: image
   $path: assets/logos/favicon.svg
-  $description: Designframe favicon — single-letter "d" mark scaled for 16-32px browser-tab and PWA-icon contexts.
+  $description: Designframe favicon — the three-circle mark inscribed in a full-bleed white circle. Geometrically the same motif as logo.mark but bounded by a circular outline rather than the square canvas, sized for 16-32px browser-tab and PWA-icon contexts where a circular mask is common.
   $applied-guidance: |
-    Reserved for contexts where the full "df" monogram becomes unreadable (browser tabs at 16px, OS app dock at 32px, system notification badges). The single-letter "d" is a legibility-driven simplification, not a design preference — at any size where logo.mark renders legibly, prefer logo.mark.
+    Reserved for contexts where the square logo.mark canvas doesn't fit a target surface's icon mask (browser tabs, OS app dock, system notification badges that crop to a circular mask). At any size where logo.mark renders cleanly within its container, prefer logo.mark — the favicon is a mask-shape adaptation, not a scale-down alternative.
   $min-size:
     $ref: "{size.element.sub}"
 ```
 
 ### Do's and Don'ts (asset-specific)
 
-- **Do** use the gradient wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
-- **Do** swap to the on-dark variant when bg darker than `color.theme.invert.bg` is the surface — the gradient on near-black lacks the contrast the gradient on white achieves.
-- **Don't** recolor any asset variant. Brand owners forking Designframe replace primitives in PRISM.md frontmatter (`color.brand.key`, `color.brand.key-end`) — the asset SVGs re-render automatically once those primitives change. Hand-edit recoloring fights the cascade.
-- **Don't** apply effects (drop shadow, glow, outline, emboss) to brand assets — DF's identity is the gradient + the geometry, not chrome treatments. If the asset needs visual weight, increase its size; don't decorate it.
-- **Don't** use logo.favicon outside its 16-32px size band — it's a single-letter mark designed to remain readable at icon scale, and it looks anemic at larger sizes where the full mark or wordmark belongs.
+- **Do** use the wordmark as the headline brand surface — homepage, sign-in screens, marketing-page headers, OG images.
+- **Do** swap to the on-dark variants when surface bg is darker than `color.theme.invert.bg` (e.g., in mode:dark or mode:key contexts) — the fill inverts from #222222 to white while geometry stays identical.
+- **Don't** recolor any asset variant. The Designframe identity is intentionally monochromatic — `#222222` + white is the entire brand palette. If you fork this kit to define your own brand, replace the SVGs with your own marks; the brand-tier color tokens (`color.brand.key`, `color.brand.key-end`, etc.) are utility colors retained for DF token-surface compatibility, not the brand identity itself.
+- **Don't** apply effects (drop shadow, glow, outline, emboss). Designframe's identity is the geometry — three circles in √2 ratio encoding the LANDMARK/SECTION/BLOCK cascade, the wordmark's uppercase proportions — not chrome treatments. If the asset needs visual weight, increase its size; don't decorate it.
+- **Don't** use logo.favicon outside its 16-32px size band — at larger sizes the circular outline reads as decorative rather than functional. Use logo.mark for any non-icon-masked context.
 
 ## Modes
 

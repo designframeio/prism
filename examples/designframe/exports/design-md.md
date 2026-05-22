@@ -6,7 +6,7 @@ description: |-
   Built as a Tailwind CSS preset/extension; pure CSS output.
 license: Apache-2.0
 generator: df-prism/tools/emit-design-md.mjs
-generated-at: 2026-05-18
+generated-at: 2026-05-22
 ---
 # Prism Designframe
 
@@ -26,34 +26,42 @@ Color tokens use MD3 (Material Design 3) canonical names where applicable; DF-na
 
 | MD3 Name | Value | DF Native |
 |---|---|---|
-| `primary` | `#fb03b9` | `color.brand.key` |
-| `primary-container` | `#3883ff` | `color.brand.key-end` |
+| `primary` | `#222222` | `color.brand.key` |
+| `primary-container` | `#222222` | `color.brand.key-end` |
 | `on-surface` | `#0c0c0c` | `color.brand.primary` |
-| `on-surface-variant` | `#888888` | `color.brand.secondary` |
+| `on-surface-variant` | `#757575` | `color.brand.secondary` |
 | `outline` | `#cccccc` | `color.brand.tertiary` |
 | `on-primary` | `#ffffff` | `color.brand.invert` |
 | `on-surface-disabled` | `#cccccc` | `color.brand.disabled` |
 | `surface` | `#ffffff` | `color.brand.background` |
-| `surface-bright` | `#ffe6f8` | `color.brand.background-start` |
-| `surface-dim` | `#ebf3ff` | `color.brand.background-end` |
-| `brand-alt-key` | `#fa0002` | `color.brand-alt.key` |
-| `brand-alt-key-end` | `#faa002` | `color.brand-alt.key-end` |
+| `surface-bright` | `#dddddd` | `color.brand.background-start` |
+| `surface-dim` | `#ffffff` | `color.brand.background-end` |
+| `brand-alt-key` | `#000000` | `color.brand-alt.key` |
+| `brand-alt-key-end` | `#222222` | `color.brand-alt.key-end` |
 | `brand-alt-primary` | `#0c0c0c` | `color.brand-alt.primary` |
-| `brand-alt-secondary` | `#888888` | `color.brand-alt.secondary` |
+| `brand-alt-secondary` | `#757575` | `color.brand-alt.secondary` |
 | `brand-alt-tertiary` | `#cccccc` | `color.brand-alt.tertiary` |
 | `brand-alt-invert` | `#ffffff` | `color.brand-alt.invert` |
 | `brand-alt-disabled` | `#cccccc` | `color.brand-alt.disabled` |
 | `brand-alt-background` | `#ffffff` | `color.brand-alt.background` |
-| `brand-alt-background-start` | `#ff9f1c` | `color.brand-alt.background-start` |
-| `brand-alt-background-end` | `#ffd166` | `color.brand-alt.background-end` |
-| `alert-notify-bg` | `#3883ff` | `color.alert.notify.bg` |
-| `alert-notify-fg` | `#ffffff` | `color.alert.notify.fg` |
-| `tertiary` | `#faa002` | `color.alert.warning.bg` |
-| `on-tertiary` | `#0c0c0c` | `color.alert.warning.fg` |
-| `error` | `#fa0002` | `color.alert.error.bg` |
-| `on-error` | `#ffffff` | `color.alert.error.fg` |
-| `alert-success-bg` | `#22c55e` | `color.alert.success.bg` |
-| `alert-success-fg` | `#ffffff` | `color.alert.success.fg` |
+| `brand-alt-background-start` | `#cccccc` | `color.brand-alt.background-start` |
+| `brand-alt-background-end` | `#ffffff` | `color.brand-alt.background-end` |
+| `alert-notify-base` | `#60a5fa` | `color.alert.notify.base` |
+| `alert-notify-heading` | `#1d4ed8` | `color.alert.notify.heading` |
+| `alert-notify-text` | `#2563eb` | `color.alert.notify.text` |
+| `alert-notify-background` | `#dbeafe` | `color.alert.notify.background` |
+| `alert-warning-base` | `#facc15` | `color.alert.warning.base` |
+| `alert-warning-heading` | `#a16207` | `color.alert.warning.heading` |
+| `alert-warning-text` | `#ca8a04` | `color.alert.warning.text` |
+| `alert-warning-background` | `#fef9c3` | `color.alert.warning.background` |
+| `error` | `#f87171` | `color.alert.error.base` |
+| `on-error-container` | `#b91c1c` | `color.alert.error.heading` |
+| `alert-error-text` | `#dc2626` | `color.alert.error.text` |
+| `error-container` | `#fee2e2` | `color.alert.error.background` |
+| `alert-success-base` | `#4ade80` | `color.alert.success.base` |
+| `alert-success-heading` | `#15803d` | `color.alert.success.heading` |
+| `alert-success-text` | `#16a34a` | `color.alert.success.text` |
+| `alert-success-background` | `#dcfce7` | `color.alert.success.background` |
 | `background` | `#ffffff` | `color.theme.default.bg` |
 | `on-background` | `#0c0c0c` | `color.theme.default.fg` |
 | `inverse-surface` | `#0c0c0c` | `color.theme.invert.bg` |
@@ -66,23 +74,23 @@ Color tokens use MD3 (Material Design 3) canonical names where applicable; DF-na
 | `theme-alt-invert-bg` | `#0c0c0c` | `color.theme.alt-invert.bg` |
 | `theme-alt-invert-fg` | `#ffffff` | `color.theme.alt-invert.fg` |
 | `theme-alt-invert-transparent-fg` | `#ffffff` | `color.theme.alt-invert-transparent.fg` |
-| `theme-key-gradient-bg` | `#fb03b9` | `color.theme.key-gradient.bg` |
-| `theme-key-gradient-bg-start` | `#fb03b9` | `color.theme.key-gradient.bg-start` |
-| `theme-key-gradient-bg-end` | `#3883ff` | `color.theme.key-gradient.bg-end` |
+| `theme-key-gradient-bg` | `#222222` | `color.theme.key-gradient.bg` |
+| `theme-key-gradient-bg-start` | `#222222` | `color.theme.key-gradient.bg-start` |
+| `theme-key-gradient-bg-end` | `#222222` | `color.theme.key-gradient.bg-end` |
 | `theme-key-gradient-bg-direction` | `right top` | `color.theme.key-gradient.bg-direction` |
 | `theme-key-gradient-fg` | `#ffffff` | `color.theme.key-gradient.fg` |
-| `theme-key-alt-bg` | `#fa0002` | `color.theme.key-alt.bg` |
+| `theme-key-alt-bg` | `#000000` | `color.theme.key-alt.bg` |
 | `theme-key-alt-fg` | `#ffffff` | `color.theme.key-alt.fg` |
-| `theme-key-alt-gradient-bg` | `#fa0002` | `color.theme.key-alt-gradient.bg` |
-| `theme-key-alt-gradient-bg-start` | `#fa0002` | `color.theme.key-alt-gradient.bg-start` |
-| `theme-key-alt-gradient-bg-end` | `#faa002` | `color.theme.key-alt-gradient.bg-end` |
+| `theme-key-alt-gradient-bg` | `#000000` | `color.theme.key-alt-gradient.bg` |
+| `theme-key-alt-gradient-bg-start` | `#000000` | `color.theme.key-alt-gradient.bg-start` |
+| `theme-key-alt-gradient-bg-end` | `#222222` | `color.theme.key-alt-gradient.bg-end` |
 | `theme-key-alt-gradient-fg` | `#ffffff` | `color.theme.key-alt-gradient.fg` |
 | `theme-header-bg` | `#ffffff` | `color.theme.header.bg` |
 | `theme-header-fg` | `#0c0c0c` | `color.theme.header.fg` |
-| `theme-header-nav-link` | `#888888` | `color.theme.header.nav-link` |
+| `theme-header-nav-link` | `#757575` | `color.theme.header.nav-link` |
 | `theme-footer-bg` | `#ffffff` | `color.theme.footer.bg` |
 | `theme-footer-fg` | `#0c0c0c` | `color.theme.footer.fg` |
-| `theme-footer-nav-link` | `#888888` | `color.theme.footer.nav-link` |
+| `theme-footer-nav-link` | `#757575` | `color.theme.footer.nav-link` |
 
 ## Typography
 
@@ -143,9 +151,9 @@ Border radius is brand-owned at the configurable level (`radius.brand.*`). Artic
 | Token | Value | Notes |
 |---|---|---|
 | `radius-brand-min` | 4px | Brand customizable |
-| `radius-brand-base` | 8px | Brand customizable |
-| `radius-brand-corner` | 8px | Brand customizable |
-| `radius-brand-field` | 20px | Brand customizable |
+| `radius-brand-base` | 0px | Brand customizable |
+| `radius-brand-corner` | 4px | Brand customizable |
+| `radius-brand-field` | 4px | Brand customizable |
 | `radius-full` | 9999px | Pill / circle |
 | `radius-article` | 16px (→ 24px at xl) | Card / article |
 
@@ -155,9 +163,9 @@ Brand assets ship alongside the token system. Each asset declares a project-rela
 
 | Asset | Type | Path | Description | Variants |
 |---|---|---|---|---|
-| `logo.primary` | image | `assets/logos/df-wordmark.svg` | Primary Designframe wordmark — lowercase, two-stop gradient (key → key-end), right-top direction. | 1 variant |
-| `logo.mark` | image | `assets/logos/df-mark.svg` | Designframe mark — rounded-square geometry, two-stop gradient fill, inset "df" monogram in invert. | 2 variants |
-| `logo.favicon` | image | `assets/logos/favicon.svg` | Designframe favicon — single-letter "d" mark scaled for 16-32px browser-tab and PWA-icon contexts. | — |
+| `logo.primary` | image | `assets/logos/df-wordmark.svg` | Primary Designframe wordmark — "DESIGNFRAME" in solid | 1 variant |
+| `logo.mark` | image | `assets/logos/df-mark.svg` | Designframe mark — three solid circles of decreasing size, aligned on the horizontal centerline of a 1024×1024 square canvas. The default variant places white circles on a | 2 variants |
+| `logo.favicon` | image | `assets/logos/favicon.svg` | Designframe favicon — the three-circle mark inscribed in a full-bleed white circle. Geometrically the same motif as logo.mark but bounded by a circular outline rather than the square canvas, sized for 16-32px browser-tab and PWA-icon contexts where a circular mask is common. | — |
 
 ## Components
 
